@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joanna Huang - Interactive Resume</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 250px;
+            }
+        }
+        .nav-active {
+            border-left: 4px solid #d97757;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+        .timeline-item-active {
+            border-left-color: #d97757;
+            background-color: #f9fafb;
+        }
+        body {
+            background-color: #faf9f8;
+            color: #333333;
+        }
+    </style>
+</head>
+<body class="flex flex-col md:flex-row min-h-screen overflow-x-hidden font-sans">
+
+<!-- Chosen Palette: Warm Neutrals with Slate Blue and Terracotta Accents (Background: #faf9f8, Accents: #4a6b7c, #d97757) -->
+<!-- Application Structure Plan: The SPA is structured as a professional dashboard to reflect the candidate's SaaS/IT management background. It features a responsive sidebar for navigation and core contact info. The main content area is divided into three thematic views: 'Executive Overview' (visualizing career composition and skills), 'Experience Journey' (an interactive timeline with dynamic detail rendering), and 'Technical Portfolio' (projects and toolset). This structure allows hiring managers to quickly grasp her high-level value, then drill down into specific roles and technical capabilities interactively. -->
+<!-- Visualization & Content Choices: 
+1. Career Domain Breakdown -> Goal: Inform/Compare -> Donut Chart (Chart.js) -> Hover tooltips -> Justification: Quickly communicates the hybrid nature of her 15+ year career across IT, Marketing, and Web Design. -> Library: Chart.js (NO SVG).
+2. Competency Matrix -> Goal: Analyze -> Radar Chart (Chart.js) -> Hover tooltips -> Justification: Maps out her cross-functional strengths (PM, Analytics, Marketing, Tech) to prove she is the 'translator' between business and engineering. -> Library: Chart.js (NO SVG).
+3. Experience Timeline -> Goal: Organize/Explore -> Interactive HTML List + JS Detail Pane -> Click to view details -> Justification: Prevents text overload. Users select the role they care about to read the bullet points. -> Method: Vanilla JS DOM manipulation. 
+-->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <aside class="w-full md:w-64 bg-white shadow-lg z-10 flex flex-col justify-between transition-all duration-300">
+        <div>
+            <div class="p-6 text-center border-b border-gray-100">
+                <div class="w-24 h-24 rounded-full bg-[#4a6b7c] text-white flex items-center justify-center text-3xl font-bold mx-auto mb-4 tracking-wider">
+                    JH
+                </div>
+                <h1 class="text-2xl font-bold text-gray-800">Joanna Huang</h1>
+                <p class="text-sm text-[#d97757] font-semibold mt-1 uppercase tracking-wide">IT & Marketing Professional</p>
+                <p class="text-xs text-gray-500 mt-2">&#128205; New Taipei City, Taiwan</p>
+            </div>
+            
+            <nav class="flex flex-row md:flex-col overflow-x-auto md:overflow-visible p-4 gap-2">
+                <button onclick="navigate('overview')" id="nav-overview" class="nav-active text-left px-4 py-3 rounded text-sm font-medium transition-colors hover:bg-gray-50 whitespace-nowrap">
+                    &#128202; Executive Overview
+                </button>
+                <button onclick="navigate('experience')" id="nav-experience" class="text-left px-4 py-3 rounded text-gray-600 text-sm font-medium transition-colors hover:bg-gray-50 whitespace-nowrap">
+                    &#128188; Experience Journey
+                </button>
+                <button onclick="navigate('portfolio')" id="nav-portfolio" class="text-left px-4 py-3 rounded text-gray-600 text-sm font-medium transition-colors hover:bg-gray-50 whitespace-nowrap">
+                    &#128736; Tech & Portfolio
+                </button>
+            </nav>
+        </div>
+
+        <div class="p-6 border-t border-gray-100 bg-gray-50 text-xs text-gray-600 space-y-3">
+            <p class="flex items-center gap-2"><span class="text-lg">&#128222;</span> +886-933-234-254</p>
+            <p class="flex items-center gap-2"><span class="text-lg">&#9993;</span> joannahep@gmail.com</p>
+            <p class="flex items-center gap-2"><span class="text-lg">&#127760;</span> LinkedIn / GitHub available</p>
+        </div>
+    </aside>
+
+    <main class="flex-1 p-6 md:p-10 overflow-y-auto">
+        
+        <section id="section-overview" class="block animate-fade-in">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-2 border-b-2 border-[#d97757] inline-block pb-1">Executive Overview</h2>
+                <p class="text-gray-600 mt-4 leading-relaxed bg-white p-6 rounded-lg shadow-sm border-l-4 border-[#4a6b7c]">
+                    This section provides a high-level visualization of my 15+ year cross-functional career. As a professional uniquely positioned at the intersection of technology and business strategy, the charts below illustrate how my expertise balances SaaS platform management, digital marketing, and project management. Interact with the charts to see specific domain allocations and competency scoring.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4 text-center">Career Domain Allocation</h3>
+                    <div class="chart-container">
+                        <canvas id="domainChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4 text-center">Core Competency Matrix</h3>
+                    <div class="chart-container">
+                        <canvas id="skillsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-white p-6 rounded-lg shadow-sm flex flex-col md:flex-row items-center gap-6">
+                <div class="text-5xl text-[#d97757] font-bold">15+</div>
+                <div>
+                    <h4 class="text-xl font-bold text-gray-800">Years of Hybrid Expertise</h4>
+                    <p class="text-gray-600 mt-1">Adept at acting as a "translator" between business stakeholders and engineering teams. Proven track record in leveraging data analytics (Power BI) and AI-driven automation to streamline operations and negotiate enterprise contracts.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="section-experience" class="hidden animate-fade-in">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-2 border-b-2 border-[#d97757] inline-block pb-1">Experience Journey</h2>
+                <p class="text-gray-600 mt-4 leading-relaxed bg-white p-6 rounded-lg shadow-sm border-l-4 border-[#4a6b7c]">
+                    This interactive timeline details my professional progression. Select any role from the timeline on the left to reveal specific achievements, metrics, and responsibilities in the detail pane on the right. This allows you to explore my transition from digital marketing and web design into enterprise IT cloud operations.
+                </p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-8">
+                <div class="w-full lg:w-1/3">
+                    <div class="bg-white rounded-lg shadow-sm p-4 h-full" id="timeline-container">
+                    </div>
+                </div>
+
+                <div class="w-full lg:w-2/3">
+                    <div class="bg-white rounded-lg shadow-md p-8 h-full sticky top-10" id="experience-details">
+                        <div class="flex flex-col items-center justify-center h-full text-gray-400">
+                            <span class="text-4xl mb-3">&#8678;</span>
+                            <p>Select a role from the timeline to view details.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="section-portfolio" class="hidden animate-fade-in">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-2 border-b-2 border-[#d97757] inline-block pb-1">Technical Portfolio & Education</h2>
+                <p class="text-gray-600 mt-4 leading-relaxed bg-white p-6 rounded-lg shadow-sm border-l-4 border-[#4a6b7c]">
+                    This section outlines my technical toolkit, language proficiencies, academic background, and highlights a key automation project. It demonstrates my capability to build practical tools using modern AI workflows to optimize enterprise resource planning.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div class="bg-white p-6 rounded-lg shadow-sm border-t-4 border-[#4a6b7c]">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2"><span>&#128295;</span> Tools & Platforms</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Microsoft 365 Admin</span>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Atlassian (Jira/Confluence/Trello)</span>
+                        <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">Power BI</span>
+                        <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">Google Analytics / Ads</span>
+                        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Python (API/Scripting)</span>
+                        <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">HTML/CSS/JS</span>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-sm border-t-4 border-[#d97757]">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2"><span>&#127891;</span> Education</h3>
+                    <div class="mb-4">
+                        <h4 class="font-bold text-gray-800">BS in Computer Science</h4>
+                        <p class="text-sm text-gray-600">Chinese Culture University | Sep 2003 – Jun 2008</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-800">BA in Information Communication (Double Major)</h4>
+                        <p class="text-sm text-gray-600">Chinese Culture University | Sep 2003 – Jun 2008</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gray-800 text-white p-8 rounded-lg shadow-lg relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-4 opacity-20 text-6xl">&#128187;</div>
+                <h3 class="text-2xl font-bold mb-2 text-[#d97757]">Featured Project: Trello Enterprise Toolkit</h3>
+                <p class="text-sm text-gray-300 mb-4 uppercase tracking-wider font-semibold">AI-Assisted Vibe Coding</p>
+                <p class="leading-relaxed mb-6">
+                    Developed an AI-assisted Python script to extract Trello Enterprise-level user data via API. Consolidated the data to identify inactive accounts and multi-board users.
+                </p>
+                <div class="bg-gray-900 p-4 rounded font-mono text-sm text-green-400 border border-gray-700">
+                    > Executed data extraction via API<br>
+                    > Identified 15% inactive seats<br>
+                    > Result: Provided critical leverage for vendor negotiations and resource downgrades, optimizing IT budget.
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        const experienceData = [
+            {
+                id: "htc-cloud",
+                title: "Sr. Specialist: M365 & IT Cloud",
+                company: "HTC Corporation",
+                date: "2024 – 2025",
+                details: [
+                    "Managed enterprise-level SaaS subscriptions (Microsoft 365 Entra, Atlassian Suite, Unity, GitHub Copilot), ensuring service continuity and account security.",
+                    "Led SaaS renewals and vendor negotiations, leveraging accurate demand forecasting and utilization data to reclaim idle resources and optimize IT budgets.",
+                    "Developed automated license dashboards using Power BI to track usage data and monitor activities.",
+                    "Created practical tools via 'Vibe Coding' (AI-assisted scripting), including a custom Python script to pull Trello Enterprise data via API for comprehensive usage analysis and reporting."
+                ]
+            },
+            {
+                id: "htc-web",
+                title: "Sr. Specialist: Web Content Mgmt",
+                company: "HTC Corporation",
+                date: "2021 – 2024",
+                details: [
+                    "Managed global official websites including htc.com, vive.com, and business.vive.com.",
+                    "Directed website maintenance, localization, and content publishing for 10 languages across 6 global websites.",
+                    "Collaborated seamlessly with Product Managers, designers, and engineers to implement new product pages and continuously improve content performance and user experience."
+                ]
+            },
+            {
+                id: "htc-media",
+                title: "Paid Media Buyer",
+                company: "HTC Corporation",
+                date: "2017 – 2021",
+                details: [
+                    "Executed and optimized high-impact paid media campaigns for HTC and VIVE brands globally.",
+                    "Managed advertising across multiple platforms, including Google Ads (Search, GDN, YouTube), Facebook, and Twitter.",
+                    "Utilized Google Analytics, Power BI, and Excel to analyze campaign performance and deliver actionable marketing insights."
+                ]
+            },
+            {
+                id: "promise",
+                title: "Webmaster / Marketing Specialist",
+                company: "Promise Technology Inc.",
+                date: "Apr 2013 – Nov 2016",
+                details: [
+                    "Spearheaded corporate website planning, proposals, frontend/backend testing, and SEO optimization.",
+                    "Planned and executed comprehensive digital marketing campaigns for new product launches.",
+                    "Acted as the primary liaison between IT and Product Marketing departments to consolidate requirements and streamline project delivery.",
+                    "Conducted system analysis and website traffic monitoring using Google Analytics and Search Console.",
+                    "Coordinated APAC regional exhibition events, including end-to-end project management for COMPUTEX 2016."
+                ]
+            },
+            {
+                id: "draytek",
+                title: "Website Marketing Specialist",
+                company: "DrayTek Corp.",
+                date: "Dec 2010 – Aug 2012",
+                details: [
+                    "Proposed and executed comprehensive corporate website upgrade plans.",
+                    "Developed interactive Product GUI Live Web Demos to enhance user understanding of technical products.",
+                    "Designed web Flash banners and managed EDM creation and distribution to global subscribers."
+                ]
+            },
+            {
+                id: "chida",
+                title: "Web Designer",
+                company: "Chida Technology Corp.",
+                date: "Oct 2008 – Dec 2010",
+                details: [
+                    "Analyzed website requirements and designed user operation flows and UI prototypes.",
+                    "Executed frontend web development using HTML, CSS, and JavaScript.",
+                    "Created visual style designs and animations for various web projects."
+                ]
+            }
+        ];
+
+        function navigate(sectionId) {
+            document.querySelectorAll('section').forEach(sec => sec.classList.add('hidden'));
+            document.getElementById('section-' + sectionId).classList.remove('hidden');
+
+            document.querySelectorAll('nav button').forEach(btn => {
+                btn.classList.remove('nav-active', 'text-gray-800');
+                btn.classList.add('text-gray-600');
+            });
+            const activeBtn = document.getElementById('nav-' + sectionId);
+            activeBtn.classList.remove('text-gray-600');
+            activeBtn.classList.add('nav-active');
+        }
+
+        function renderTimeline() {
+            const container = document.getElementById('timeline-container');
+            experienceData.forEach((job, index) => {
+                const item = document.createElement('div');
+                item.className = 'p-4 mb-2 cursor-pointer border-l-4 border-gray-200 hover:bg-gray-50 transition-colors rounded-r timeline-item';
+                item.onclick = () => selectJob(index, item);
+                item.innerHTML = `
+                    <h4 class="font-bold text-gray-800 text-sm">${job.title}</h4>
+                    <p class="text-xs text-gray-500 font-medium">${job.company}</p>
+                    <p class="text-xs text-[#d97757] mt-1">${job.date}</p>
+                `;
+                container.appendChild(item);
+                if(index === 0) selectJob(0, item);
+            });
+        }
+
+        function selectJob(index, element) {
+            document.querySelectorAll('.timeline-item').forEach(el => el.classList.remove('timeline-item-active'));
+            element.classList.add('timeline-item-active');
+
+            const job = experienceData[index];
+            const detailsHtml = `
+                <div class="animate-fade-in">
+                    <span class="inline-block px-3 py-1 bg-gray-100 text-[#4a6b7c] rounded-full text-sm font-bold mb-4">${job.date}</span>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-1">${job.title}</h3>
+                    <h4 class="text-lg text-gray-600 mb-6 flex items-center gap-2"><span>&#127970;</span> ${job.company}</h4>
+                    <ul class="space-y-4">
+                        ${job.details.map(detail => `<li class="flex items-start gap-3 text-gray-700 leading-relaxed"><span class="text-[#d97757] mt-1">&#10004;</span> <span>${detail}</span></li>`).join('')}
+                    </ul>
+                </div>
+            `;
+            document.getElementById('experience-details').innerHTML = detailsHtml;
+        }
+
+        function initCharts() {
+            const ctxDomain = document.getElementById('domainChart').getContext('2d');
+            new Chart(ctxDomain, {
+                type: 'doughnut',
+                data: {
+                    labels: ['IT & Cloud Operations', 'Digital Marketing / Paid Media', 'Web Mgmt & Design'],
+                    datasets: [{
+                        data: [2, 7, 6],
+                        backgroundColor: ['#4a6b7c', '#d97757', '#e5e7eb'],
+                        borderWidth: 0,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { boxWidth: 12, padding: 20 } },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return ' ' + context.label + ': ~' + context.raw + ' Years';
+                                }
+                            }
+                        }
+                    },
+                    cutout: '65%'
+                }
+            });
+
+            const ctxSkills = document.getElementById('skillsChart').getContext('2d');
+            new Chart(ctxSkills, {
+                type: 'radar',
+                data: {
+                    labels: ['Project Mgmt', 'Data Analytics', 'IT Operations', 'Frontend Dev', 'Digital Marketing'],
+                    datasets: [{
+                        label: 'Proficiency',
+                        data: [90, 85, 80, 75, 85],
+                        backgroundColor: 'rgba(74, 107, 124, 0.2)',
+                        borderColor: '#4a6b7c',
+                        pointBackgroundColor: '#d97757',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: '#d97757'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(0,0,0,0.1)' },
+                            grid: { color: 'rgba(0,0,0,0.1)' },
+                            pointLabels: { font: { size: 12 }, color: '#4b5563' },
+                            ticks: { display: false, min: 0, max: 100 }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderTimeline();
+            initCharts();
+            
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: translateY(10px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+                .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>
