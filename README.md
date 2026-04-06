@@ -18,6 +18,6 @@ You can view the live version here: [https://catseyehuang.github.io/cv-joanna-hu
 
 ## 📫 Contact
 
-- **Email:** [joannahep@gmail.com]
+- **Email:** joannahep@gmail.com 
 - **LinkedIn:** [https://www.linkedin.com/in/joanna-ciaosi-huang/]
 - **GitHub:** [https://github.com/catseyehuang]
