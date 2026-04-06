@@ -34,27 +34,45 @@
             background-color: #faf9f8;
             color: #333333;
         }
+        
+        /* Print Styles for PDF Export */
+        @media print {
+            body { background-color: #ffffff; color: #000; }
+            aside { display: none !important; } /* Hide sidebar */
+            main { padding: 0 !important; margin: 0 !important; width: 100% !important; overflow: visible !important; display: block !important; }
+            /* Force all sections to display linearly for print */
+            section { display: block !important; opacity: 1 !important; page-break-inside: avoid; margin-bottom: 2rem; border-bottom: 1px solid #eee; padding-bottom: 2rem;}
+            #section-experience { page-break-before: always; }
+            .chart-container { max-width: 100%; height: 300px; page-break-inside: avoid; }
+            .shadow-sm, .shadow-lg, .shadow-md { box-shadow: none !important; border: 1px solid #e5e7eb; }
+            /* Display full timeline details for print */
+            #experience-details { position: static !important; }
+            .bg-gray-800 { background-color: #f3f4f6 !important; color: #1f2937 !important; border: 1px solid #ccc; }
+            .text-white { color: #1f2937 !important; }
+            .text-green-400 { color: #047857 !important; }
+        }
     </style>
 </head>
 <body class="flex flex-col md:flex-row min-h-screen overflow-x-hidden font-sans">
 
 <!-- Chosen Palette: Warm Neutrals with Slate Blue and Terracotta Accents (Background: #faf9f8, Accents: #4a6b7c, #d97757) -->
-<!-- Application Structure Plan: The SPA is structured as a professional dashboard to reflect the candidate's SaaS/IT management background. It features a responsive sidebar for navigation and core contact info. The main content area is divided into three thematic views: 'Executive Overview' (visualizing career composition and skills), 'Experience Journey' (an interactive timeline with dynamic detail rendering), and 'Technical Portfolio' (projects and toolset). This structure allows hiring managers to quickly grasp her high-level value, then drill down into specific roles and technical capabilities interactively. -->
+<!-- Application Structure Plan: The SPA is structured as a professional dashboard to reflect the candidate's SaaS/IT management background. It features a responsive sidebar for navigation and core contact info. The main content area is divided into three thematic views: 'Executive Overview' (visualizing career composition and skills), 'Experience Journey' (an interactive timeline with dynamic detail rendering), and 'Technical Portfolio' (projects and toolset). This structure allows hiring managers to quickly grasp her high-level value, then drill down into specific roles and technical capabilities interactively.Dashboard structure updated to include a specific "Vibe Coding Projects" section to highlight self-learning and technical PM capabilities. Added PDF print functionality via CSS media queries. -->
 <!-- Visualization & Content Choices: 
 1. Career Domain Breakdown -> Goal: Inform/Compare -> Donut Chart (Chart.js) -> Hover tooltips -> Justification: Quickly communicates the hybrid nature of her 15+ year career across IT, Marketing, and Web Design. -> Library: Chart.js (NO SVG).
 2. Competency Matrix -> Goal: Analyze -> Radar Chart (Chart.js) -> Hover tooltips -> Justification: Maps out her cross-functional strengths (PM, Analytics, Marketing, Tech) to prove she is the 'translator' between business and engineering. -> Library: Chart.js (NO SVG).
 3. Experience Timeline -> Goal: Organize/Explore -> Interactive HTML List + JS Detail Pane -> Click to view details -> Justification: Prevents text overload. Users select the role they care about to read the bullet points. -> Method: Vanilla JS DOM manipulation. 
+4. Vibe Coding Grid -> Goal: Showcase portfolio -> CSS Grid with interactive hover states -> Justification: Mimics GitHub repositories for quick scanning of tech stack and links.
 -->
 <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 
-    <aside class="w-full md:w-64 bg-white shadow-lg z-10 flex flex-col justify-between transition-all duration-300">
+    <aside class="w-full md:w-64 bg-white shadow-lg z-10 flex flex-col justify-between transition-all duration-300 md:h-screen md:sticky md:top-0">
         <div>
             <div class="p-6 text-center border-b border-gray-100">
                 <div class="w-24 h-24 rounded-full bg-[#4a6b7c] text-white flex items-center justify-center text-3xl font-bold mx-auto mb-4 tracking-wider">
                     JH
                 </div>
                 <h1 class="text-2xl font-bold text-gray-800">Joanna Huang</h1>
-                <p class="text-sm text-[#d97757] font-semibold mt-1 uppercase tracking-wide">IT & Marketing Professional</p>
+                <p class="text-sm text-[#d97757] font-semibold mt-1 uppercase tracking-wide">IT PM & Marketing Tech</p>
                 <p class="text-xs text-gray-500 mt-2">&#128205; New Taipei City, Taiwan</p>
             </div>
             
@@ -66,20 +84,29 @@
                     &#128188; Experience Journey
                 </button>
                 <button onclick="navigate('portfolio')" id="nav-portfolio" class="text-left px-4 py-3 rounded text-gray-600 text-sm font-medium transition-colors hover:bg-gray-50 whitespace-nowrap">
-                    &#128736; Tech & Portfolio
+                    &#128218; Tech & Education
+                </button>
+                <button onclick="navigate('vibecoding')" id="nav-vibecoding" class="text-left px-4 py-3 rounded text-gray-600 text-sm font-medium transition-colors hover:bg-gray-50 whitespace-nowrap border border-transparent hover:border-[#4a6b7c]">
+                    &#128187; Vibe Coding Projects
                 </button>
             </nav>
         </div>
 
         <div class="p-6 border-t border-gray-100 bg-gray-50 text-xs text-gray-600 space-y-3">
-            <p class="flex items-center gap-2"><span class="text-lg">&#128222;</span> +886-933-234-254</p>
+            <!--<p class="flex items-center gap-2"><span class="text-lg">&#128222;</span> +886-933-234-254</p>-->
             <p class="flex items-center gap-2"><span class="text-lg">&#9993;</span> joannahep@gmail.com</p>
-            <p class="flex items-center gap-2"><span class="text-lg">&#127760;</span> LinkedIn / GitHub available</p>
+            <a href="https://www.linkedin.com/in/joanna-ciaosi-huang/" target="_blank" class="flex items-center gap-2 hover:text-[#d97757] transition-colors"><span class="text-lg">&#128100;</span> LinkedIn Profile</a>
+            <a href="https://github.com/catseyehuang" target="_blank" class="flex items-center gap-2 hover:text-[#d97757] transition-colors"><span class="text-lg">&#128295;</span> GitHub Repositories</a>
+            
+            <button onclick="window.print()" class="w-full mt-4 bg-[#4a6b7c] text-white py-2 px-4 rounded hover:bg-[#364f5c] transition-colors flex items-center justify-center gap-2 font-medium shadow-sm">
+                &#128196; Download PDF
+            </button>
         </div>
     </aside>
 
     <main class="flex-1 p-6 md:p-10 overflow-y-auto">
         
+        <!-- SECTION: OVERVIEW -->
         <section id="section-overview" class="block animate-fade-in">
             <div class="mb-8">
                 <h2 class="text-3xl font-bold text-gray-800 mb-2 border-b-2 border-[#d97757] inline-block pb-1">Executive Overview</h2>
@@ -108,11 +135,12 @@
                 <div class="text-5xl text-[#d97757] font-bold">15+</div>
                 <div>
                     <h4 class="text-xl font-bold text-gray-800">Years of Hybrid Expertise</h4>
-                    <p class="text-gray-600 mt-1">Adept at acting as a "translator" between business stakeholders and engineering teams. Proven track record in leveraging data analytics (Power BI) and AI-driven automation to streamline operations and negotiate enterprise contracts.</p>
+                    <p class="text-gray-600 mt-1">Adept at acting as a "translator" between business stakeholders and engineering teams. Proven track record in leveraging data analytics (Power BI) and AI-driven automation to streamline operations, manage projects efficiently, and negotiate enterprise contracts.</p>
                 </div>
             </div>
         </section>
 
+        <!-- SECTION: EXPERIENCE -->
         <section id="section-experience" class="hidden animate-fade-in">
             <div class="mb-8">
                 <h2 class="text-3xl font-bold text-gray-800 mb-2 border-b-2 border-[#d97757] inline-block pb-1">Experience Journey</h2>
@@ -124,11 +152,13 @@
             <div class="flex flex-col lg:flex-row gap-8">
                 <div class="w-full lg:w-1/3">
                     <div class="bg-white rounded-lg shadow-sm p-4 h-full" id="timeline-container">
+                        <!-- Populated by JS -->
                     </div>
                 </div>
 
                 <div class="w-full lg:w-2/3">
                     <div class="bg-white rounded-lg shadow-md p-8 h-full sticky top-10" id="experience-details">
+                        <!-- Populated by JS -->
                         <div class="flex flex-col items-center justify-center h-full text-gray-400">
                             <span class="text-4xl mb-3">&#8678;</span>
                             <p>Select a role from the timeline to view details.</p>
@@ -138,11 +168,12 @@
             </div>
         </section>
 
+        <!-- SECTION: TECH & PORTFOLIO -->
         <section id="section-portfolio" class="hidden animate-fade-in">
             <div class="mb-8">
                 <h2 class="text-3xl font-bold text-gray-800 mb-2 border-b-2 border-[#d97757] inline-block pb-1">Technical Portfolio & Education</h2>
                 <p class="text-gray-600 mt-4 leading-relaxed bg-white p-6 rounded-lg shadow-sm border-l-4 border-[#4a6b7c]">
-                    This section outlines my technical toolkit, language proficiencies, academic background, and highlights a key automation project. It demonstrates my capability to build practical tools using modern AI workflows to optimize enterprise resource planning.
+                    This section outlines my technical toolkit, language proficiencies, academic background, and professional certifications.
                 </p>
             </div>
 
@@ -157,6 +188,13 @@
                         <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Python (API/Scripting)</span>
                         <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">HTML/CSS/JS</span>
                     </div>
+                    
+                    <h3 class="text-xl font-bold text-gray-800 mt-8 mb-4 flex items-center gap-2"><span>&#128172;</span> Languages</h3>
+                    <ul class="text-sm text-gray-700 space-y-2">
+                        <li><strong>Mandarin:</strong> Native</li>
+                        <li><strong>English:</strong> Professional Working (TOEIC: 670)</li>
+                        <li><strong>Taiwanese:</strong> Intermediate</li>
+                    </ul>
                 </div>
                 
                 <div class="bg-white p-6 rounded-lg shadow-sm border-t-4 border-[#d97757]">
@@ -165,24 +203,93 @@
                         <h4 class="font-bold text-gray-800">BS in Computer Science</h4>
                         <p class="text-sm text-gray-600">Chinese Culture University | Sep 2003 – Jun 2008</p>
                     </div>
-                    <div>
+                    <div class="mb-6">
                         <h4 class="font-bold text-gray-800">BA in Information Communication (Double Major)</h4>
                         <p class="text-sm text-gray-600">Chinese Culture University | Sep 2003 – Jun 2008</p>
                     </div>
+
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2 pt-4 border-t border-gray-100"><span>&#127942;</span> Certifications</h3>
+                    <div class="bg-gray-50 p-4 rounded border border-gray-200 hover:border-[#d97757] transition-colors">
+                        <div class="flex items-start gap-3">
+                            <div class="text-2xl mt-1">&#127941;</div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Google Certified Educator</h4>
+                                <p class="text-sm text-gray-600 mb-2">Google for Education</p>
+                                <a href="https://edu.google.accredible.com/7c482414-c73c-41a5-973b-68f079f4b4fa#acc.bWelYtGi" target="_blank" class="text-xs font-semibold text-white bg-[#4a6b7c] px-3 py-1 rounded hover:bg-[#364f5c] transition-colors inline-flex items-center gap-1">View Credential &#8599;</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <div class="bg-gray-800 text-white p-8 rounded-lg shadow-lg relative overflow-hidden">
-                <div class="absolute top-0 right-0 p-4 opacity-20 text-6xl">&#128187;</div>
-                <h3 class="text-2xl font-bold mb-2 text-[#d97757]">Featured Project: Trello Enterprise Toolkit</h3>
-                <p class="text-sm text-gray-300 mb-4 uppercase tracking-wider font-semibold">AI-Assisted Vibe Coding</p>
-                <p class="leading-relaxed mb-6">
-                    Developed an AI-assisted Python script to extract Trello Enterprise-level user data via API. Consolidated the data to identify inactive accounts and multi-board users.
+        <!-- SECTION: VIBE CODING PROJECTS -->
+        <section id="section-vibecoding" class="hidden animate-fade-in">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-2 border-b-2 border-[#d97757] inline-block pb-1">Vibe Coding & Open Source</h2>
+                <p class="text-gray-600 mt-4 leading-relaxed bg-white p-6 rounded-lg shadow-sm border-l-4 border-[#4a6b7c]">
+                    I actively explore modern AI-assisted development ("Vibe Coding") to build practical tools that solve real-world operational problems. Below are my recent research projects hosted on GitHub. These highlight my ability to prototype solutions rapidly and my deep understanding of technical implementations.
                 </p>
-                <div class="bg-gray-900 p-4 rounded font-mono text-sm text-green-400 border border-gray-700">
-                    > Executed data extraction via API<br>
-                    > Identified 15% inactive seats<br>
-                    > Result: Provided critical leverage for vendor negotiations and resource downgrades, optimizing IT budget.
+            </div>
+
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+                <!-- Project 1 -->
+                <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow flex flex-col h-full">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-bold text-[#4a6b7c]">MyView Helper</h3>
+                        <span class="text-2xl">&#128187;</span>
+                    </div>
+                    <p class="text-gray-600 text-sm flex-grow mb-4">
+                        An AI-assisted tool designed to streamline specific workflows. Demonstrates capability in leveraging modern APIs and scripting to enhance daily operational efficiency.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded font-mono">Python</span>
+                        <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded font-mono">API Integration</span>
+                        <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded font-mono">AI-Assisted</span>
+                    </div>
+                    <a href="https://github.com/catseyehuang/myview_helper" target="_blank" class="block text-center w-full py-2 border border-[#4a6b7c] text-[#4a6b7c] rounded hover:bg-[#4a6b7c] hover:text-white transition-colors font-medium">
+                        View Source on GitHub
+                    </a>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow flex flex-col h-full">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-bold text-[#4a6b7c]">MyView Online Quiz</h3>
+                        <span class="text-2xl">&#128221;</span>
+                    </div>
+                    <p class="text-gray-600 text-sm flex-grow mb-4">
+                        An interactive quiz application built through vibe coding. Showcases frontend logic implementation and user interaction design for educational or assessment purposes.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded font-mono">JavaScript</span>
+                        <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded font-mono">HTML/CSS</span>
+                        <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded font-mono">Web App</span>
+                    </div>
+                    <a href="https://github.com/catseyehuang/myview_quiz" target="_blank" class="block text-center w-full py-2 border border-[#4a6b7c] text-[#4a6b7c] rounded hover:bg-[#4a6b7c] hover:text-white transition-colors font-medium">
+                        View Source on GitHub
+                    </a>
+                </div>
+
+                <!-- Project 3 (Moved from Portfolio) -->
+                <div class="bg-gray-800 text-white border border-gray-700 rounded-lg p-6 hover:shadow-lg transition-shadow flex flex-col h-full xl:col-span-2 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 text-8xl">&#9881;</div>
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-[#d97757]">Trello Enterprise Toolkit (Enterprise Grade)</h3>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4 uppercase tracking-wider font-semibold">IT Cost Optimization Script</p>
+                        
+                        <p class="text-gray-300 text-sm flex-grow mb-4 leading-relaxed max-w-3xl">
+                            Developed an AI-assisted Python script to extract Trello Enterprise-level user data via API. Consolidates massive datasets to identify inactive accounts and multi-board users. Provided critical leverage for vendor negotiations and resource downgrades, directly optimizing the IT budget.
+                </p>
+                        
+                        <div class="bg-gray-900 p-4 rounded font-mono text-sm text-green-400 border border-gray-700 mb-4 w-full md:w-3/4">
+                            > Executed automated data extraction via Atlassian API<br>
+                            > Parsed JSON & identified 15% inactive enterprise seats<br>
+                            > Output: Actionable dashboard for contract negotiation
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -263,9 +370,12 @@
         ];
 
         function navigate(sectionId) {
+            // Hide all sections
             document.querySelectorAll('section').forEach(sec => sec.classList.add('hidden'));
+            // Show target section
             document.getElementById('section-' + sectionId).classList.remove('hidden');
 
+            // Update nav button styles
             document.querySelectorAll('nav button').forEach(btn => {
                 btn.classList.remove('nav-active', 'text-gray-800');
                 btn.classList.add('text-gray-600');
@@ -287,13 +397,13 @@
                     <p class="text-xs text-[#d97757] mt-1">${job.date}</p>
                 `;
                 container.appendChild(item);
-                if(index === 0) selectJob(0, item);
+                if(index === 0) selectJob(0, item); // Select first item by default
             });
         }
 
         function selectJob(index, element) {
             document.querySelectorAll('.timeline-item').forEach(el => el.classList.remove('timeline-item-active'));
-            element.classList.add('timeline-item-active');
+            if(element) element.classList.add('timeline-item-active');
 
             const job = experienceData[index];
             const detailsHtml = `
@@ -373,10 +483,12 @@
             });
         }
 
+        // Initialize when DOM is ready
         document.addEventListener('DOMContentLoaded', () => {
             renderTimeline();
             initCharts();
             
+            // Add global fade-in animation style dynamically
             const style = document.createElement('style');
             style.textContent = `
                 @keyframes fadeIn {
