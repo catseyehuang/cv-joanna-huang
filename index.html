@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>黃巧希 Joanna Huang | 希望職稱： PM ／ 數據分析 ／ 系統分析</title>
-    <meta name="description"
-        content="黃巧希 Joanna Huang - 15+ 年跨職能資歷，專注 AI PM、系統分析與數據分析。擁有 SaaS 治理、Power BI、機器學習應用與全球多語系官網營運實戰經驗。">
+    <meta name="description" content="黃巧希 Joanna Huang - 15+ 年跨職能資歷，專注 PM、SA 與數據分析。擁有 SaaS 系統治理、數據分析、數位行銷與網站企劃實戰經驗。">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -158,154 +157,32 @@
         @media print {
             @page {
                 size: A4;
-                margin: 10mm 12mm;
+                margin: 0;
             }
 
             html,
             body {
                 background-color: #ffffff !important;
                 color: #0f172a !important;
-                display: block !important;
-                font-size: 12px !important;
-                line-height: 1.45 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                width: 210mm !important;
+                height: 297mm !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
 
-            /* Hide web UI controls, sidebars, mobile profile, and overview section during print */
-            aside,
-            nav,
-            #mobile-profile-card,
-            #mobile-bottom-nav,
-            #section-overview,
-            .print-hidden,
-            button {
+            .print-hidden-wrapper {
                 display: none !important;
             }
 
-            main {
-                width: 100% !important;
-                max-width: 100% !important;
-                padding: 0 !important;
-                margin: 0 !important;
-                overflow: visible !important;
-            }
-
-            /* Print sections continuously: Work Experience, Projects, Credentials */
-            #section-experience,
-            #section-projects,
-            #section-credentials {
-                display: block !important;
-                opacity: 1 !important;
-                margin-bottom: 20px !important;
-                break-inside: auto;
-            }
-
-            .print-show {
+            #print-cv-container {
                 display: block !important;
             }
 
-            /* High-Contrast Crisp Light Styling (No Dark Grey Backgrounds) */
-            .shadow-sm,
-            .shadow-md,
-            .shadow-lg,
-            .shadow-xl,
-            .shadow-2xl {
-                box-shadow: none !important;
-                border: 1px solid #cbd5e1 !important;
-            }
-
-            .bg-slate-900,
-            .bg-slate-850,
-            .bg-slate-950,
-            .bg-gradient-to-br,
-            .bg-gradient-to-r,
-            .bg-slate-950\/80,
-            .bg-slate-800\/90,
-            .bg-slate-800\/80,
-            .bg-slate-50,
-            .bg-slate-100 {
-                background: #ffffff !important;
-                color: #0f172a !important;
-                border: 1px solid #cbd5e1 !important;
-            }
-
-            .text-white,
-            .text-slate-100,
-            .text-slate-200,
-            .text-slate-300,
-            .text-slate-400,
-            .text-slate-500,
-            .text-slate-600,
-            .text-slate-700,
-            .text-slate-800 {
-                color: #0f172a !important;
-            }
-
-            .text-brand-500,
-            .text-amber-300,
-            .text-amber-400 {
-                color: #c26142 !important;
-            }
-
-            .text-emerald-400 {
-                color: #047857 !important;
-            }
-
-            /* Give small light tints instead of dark backgrounds in cards */
-            .bg-brand-50,
-            .bg-blue-50,
-            .bg-amber-50,
-            .bg-purple-50,
-            .bg-emerald-50 {
-                background: #f8fafc !important;
-                /* light slate tint */
-                border: 1px solid #e2e8f0 !important;
-            }
-
-            /* Projects in 2 Columns for Print */
-            #section-projects .grid {
-                display: grid !important;
-                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-                gap: 12px !important;
-            }
-
-            #section-projects .lg\:col-span-2 {
-                grid-column: span 1 / span 1 !important;
-                /* Make the hero project single span as well in 2 cols grid */
-            }
-
-            /* Credentials & Education in 2 Columns for Print */
-            #section-credentials .grid-cols-1.lg\:grid-cols-3,
-            #section-credentials .grid {
-                display: grid !important;
-                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-                gap: 12px !important;
-            }
-
-            /* Education background container specific rules */
-            #section-credentials .grid.grid-cols-1.md\:grid-cols-2 {
-                display: grid !important;
-                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-                gap: 12px !important;
-            }
-
-            /* Page Break Prevention */
-            h1,
-            h2,
-            h3,
-            h4,
-            h5 {
-                break-after: avoid;
-                page-break-after: avoid;
-            }
-
-            .border-b,
-            .group,
-            .bg-white,
-            .rounded-3xl,
-            .rounded-2xl,
-            #experience-linkedin-container>div {
-                break-inside: avoid;
-                page-break-inside: avoid;
+            .page-break {
+                page-break-after: always !important;
+                break-after: page !important;
             }
         }
     </style>
@@ -313,590 +190,474 @@
 
 <body class="flex flex-col lg:flex-row min-h-screen selection:bg-brand-500 selection:text-white">
 
-    <!-- DESKTOP SIDEBAR NAVIGATION (Hidden on Mobile) -->
-    <aside
-        class="hidden lg:flex lg:w-72 bg-slate-900 text-slate-100 z-30 flex-col justify-between transition-all duration-300 lg:h-screen lg:sticky lg:top-0 shadow-2xl border-r border-slate-800 print-hidden">
-        <!-- Top Profile Section -->
-        <div class="p-6 text-center border-b border-slate-800/80 relative overflow-hidden">
-            <div class="absolute -top-12 -left-12 w-32 h-32 bg-brand-500/10 rounded-full blur-2xl pointer-events-none">
-            </div>
-            <div
-                class="absolute -bottom-12 -right-12 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl pointer-events-none">
-            </div>
-
-            <!-- Avatar Icon / Badge -->
-            <div class="relative inline-block mb-3">
-                <img src="images/profile.png" alt="黃巧希 Joanna Huang"
-                    class="w-20 h-20 rounded-2xl object-cover ring-4 ring-slate-800 shadow-lg shadow-brand-500/20 mx-auto">
-                <span class="absolute -bottom-1 -right-1 w-5 h-5 bg-emerald-500 border-2 border-slate-900 rounded-full"
-                    title="可隨時上班"></span>
-            </div>
-
-            <h1 class="text-2xl font-bold tracking-tight text-white">黃巧希 <span
-                    class="text-lg font-normal text-white block sm:inline">Joanna</span></h1>
-            <p
-                class="text-xs font-semibold text-brand-500 bg-brand-500/10 border border-brand-500/20 py-1 px-3 rounded-full inline-block mt-2 tracking-wider uppercase">
-                希望職稱：PM ／ SA ／ 數據分析
-            </p>
-            <p class="text-xs text-slate-400 mt-3 flex items-center justify-center gap-1.5">
-                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-500"></i> 新北市 ｜ 待業中（隨時到職）
-            </p>
-        </div>
-
-        <!-- Desktop Navigation Menu (Overview First) -->
-        <nav class="p-4 space-y-1.5 flex flex-col justify-center border-b lg:border-b-0 border-slate-800/80">
-            <button onclick="navigate('overview')" id="nav-overview"
-                class="w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 flex items-center gap-3 whitespace-nowrap text-slate-300 hover:bg-slate-800/60 nav-btn-active">
-                <i data-lucide="layout-dashboard" class="w-4 h-4 shrink-0"></i>
-                <span>整體概覽 <small class="opacity-70 font-normal ml-1 print-hidden">Overview</small></span>
-            </button>
-            <button onclick="navigate('experience')" id="nav-experience"
-                class="w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 flex items-center gap-3 whitespace-nowrap text-slate-300 hover:bg-slate-800/60">
-                <i data-lucide="briefcase" class="w-4 h-4 shrink-0"></i>
-                <span>工作經歷 <small class="opacity-70 font-normal ml-1 print-hidden">Experience</small></span>
-            </button>
-            <button onclick="navigate('projects')" id="nav-projects"
-                class="w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 flex items-center gap-3 whitespace-nowrap text-slate-300 hover:bg-slate-800/60">
-                <i data-lucide="code-2" class="w-4 h-4 shrink-0"></i>
-                <span>專案與作品 <small class="opacity-70 font-normal ml-1 print-hidden">Projects</small></span>
-            </button>
-            <button onclick="navigate('credentials')" id="nav-credentials"
-                class="w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 flex items-center gap-3 whitespace-nowrap text-slate-300 hover:bg-slate-800/60">
-                <i data-lucide="award" class="w-4 h-4 shrink-0"></i>
-                <span>學歷與認證 <small class="opacity-70 font-normal ml-1 print-hidden">Education</small></span>
-            </button>
-        </nav>
-
-        <!-- Sidebar Footer / Contact -->
-        <div class="p-5 bg-slate-950/60 border-t border-slate-800/80 text-xs text-slate-400 space-y-2.5">
-            <div
-                class="font-semibold text-slate-300 text-uppercase tracking-wider text-[11px] mb-1 flex items-center gap-1.5">
-                <i data-lucide="user-check" class="w-3.5 h-3.5 text-brand-500"></i> 聯絡與資訊
-            </div>
-            <a href="mailto:joannahep@gmail.com"
-                class="flex items-center gap-2.5 text-slate-300 hover:text-brand-500 transition-colors py-1 truncate">
-                <i data-lucide="mail" class="w-4 h-4 shrink-0 text-slate-500"></i>
-                <span class="truncate">joannahep@gmail.com</span>
-            </a>
-            <a href="https://www.linkedin.com/in/joanna-ciaosi-huang/" target="_blank"
-                class="flex items-center gap-2.5 text-slate-300 hover:text-brand-500 transition-colors py-1">
-                <i data-lucide="linkedin" class="w-4 h-4 shrink-0 text-slate-500"></i>
-                <span>LinkedIn &#8599;</span>
-            </a>
-            <a href="https://github.com/catseyehuang" target="_blank"
-                class="flex items-center gap-2.5 text-slate-300 hover:text-brand-500 transition-colors py-1">
-                <i data-lucide="github" class="w-4 h-4 shrink-0 text-slate-500"></i>
-                <span>GitHub &#8599;</span>
-            </a>
-            <!--onclick="window.print()"-->
-            <button id="download-btn" onclick="window.open('CV_Joanna-Huang.pdf', '_blank')"
-                class="w-full mt-3 bg-gradient-to-r from-brand-600 to-brand-500 text-white py-2.5 px-4 rounded-xl hover:from-brand-700 hover:to-brand-600 transition-all shadow-md shadow-brand-500/20 flex items-center justify-center gap-2 font-medium text-xs group">
-                <i data-lucide="printer" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
-                <span>下載 PDF 履歷</span>
-            </button>
-        </div>
-    </aside>
-
-    <!-- MOBILE FIXED BOTTOM NAVIGATION BAR (4 Icons, Overview First) -->
-    <nav id="mobile-bottom-nav"
-        class="fixed bottom-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-xl border-t border-slate-800/80 px-2 py-2 flex justify-around items-center lg:hidden shadow-2xl print-hidden">
-        <button onclick="navigate('overview')" id="mobile-nav-overview"
-            class="flex flex-col items-center gap-1 text-brand-500 font-bold transition-all mobile-nav-btn px-3 py-1 rounded-xl">
-            <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
-            <span class="text-[11px]">整體概覽</span>
-        </button>
-        <button onclick="navigate('experience')" id="mobile-nav-experience"
-            class="flex flex-col items-center gap-1 text-slate-400 hover:text-white transition-all mobile-nav-btn px-3 py-1 rounded-xl">
-            <i data-lucide="briefcase" class="w-5 h-5"></i>
-            <span class="text-[11px]">工作經歷</span>
-        </button>
-        <button onclick="navigate('projects')" id="mobile-nav-projects"
-            class="flex flex-col items-center gap-1 text-slate-400 hover:text-white transition-all mobile-nav-btn px-3 py-1 rounded-xl">
-            <i data-lucide="code-2" class="w-5 h-5"></i>
-            <span class="text-[11px]">專案與作品</span>
-        </button>
-        <button onclick="navigate('credentials')" id="mobile-nav-credentials"
-            class="flex flex-col items-center gap-1 text-slate-400 hover:text-white transition-all mobile-nav-btn px-3 py-1 rounded-xl">
-            <i data-lucide="award" class="w-5 h-5"></i>
-            <span class="text-[11px]">學歷與認證</span>
-        </button>
-    </nav>
-
-    <!-- MAIN CONTENT AREA -->
-    <main class="flex-1 p-4 sm:p-6 lg:p-10 max-w-7xl mx-auto overflow-y-auto pb-24 lg:pb-10">
-
-        <!-- PRINT-ONLY EXECUTIVE CV HERO PROFILE CARD (Visible only during PDF export / window.print()) -->
-        <div id="print-cv-header" class="hidden print-show mb-6 p-6 bg-white border border-slate-300 rounded-3xl">
-            <div class="grid grid-cols-12 gap-6 items-center">
-                <!-- Left Column: Profile Info & Summary (7 cols) -->
-                <div class="col-span-7 space-y-3">
-                    <div class="flex items-center gap-4">
-                        <img src="images/profile.png" alt="黃巧希 Joanna Huang"
-                            class="w-20 h-20 rounded-full object-cover border-2 border-slate-300 shrink-0">
-                        <div>
-                            <h1 class="text-2xl font-extrabold text-slate-900">黃巧希 <span
-                                    class="text-base font-normal text-slate-600">Joanna Huang</span></h1>
-                            <p class="text-xs font-mono text-slate-600 mt-0.5">github.com/catseyehuang ｜
-                                joannahep@gmail.com</p>
-                        </div>
-                    </div>
-
-                    <div class="space-y-1 pt-1">
-                        <p class="text-sm font-bold text-slate-900">
-                            宏達國際電子股份有限公司 ｜ <span class="text-brand-600">Sr. Specialist</span>
-                        </p>
-                        <p class="text-xs font-semibold text-slate-700">
-                            15~16 年工作經歷 ｜ 希望職稱：<span class="text-brand-600 font-bold">PM ／ SA ／ 數據分析</span>
-                        </p>
-                    </div>
-
-                    <p
-                        class="text-xs text-slate-800 bg-white p-3 rounded-xl border border-slate-200 font-medium leading-relaxed">
-                        擁有 <strong class="text-brand-600">8 年系統治理與數據分析經驗</strong> ＋ 近期 <strong class="text-slate-900">AI
-                            應用轉型</strong>（職訓局 400 小時數據分析與 ML 專題主導）。
-                    </p>
+    <div class="flex flex-col lg:flex-row min-h-screen w-full print-hidden-wrapper">
+        <!-- DESKTOP SIDEBAR NAVIGATION (Hidden on Mobile) -->
+        <aside
+            class="hidden lg:flex lg:w-72 bg-slate-900 text-slate-100 z-30 flex-col justify-between transition-all duration-300 lg:h-screen lg:sticky lg:top-0 shadow-2xl border-r border-slate-800 print-hidden">
+            <!-- Top Profile Section -->
+            <div class="p-6 text-center border-b border-slate-800/80 relative overflow-hidden">
+                <div
+                    class="absolute -top-12 -left-12 w-32 h-32 bg-brand-500/10 rounded-full blur-2xl pointer-events-none">
+                </div>
+                <div
+                    class="absolute -bottom-12 -right-12 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl pointer-events-none">
                 </div>
 
-                <!-- Right Column: Hero Image Frame (5 cols) -->
-                <div class="col-span-5 flex justify-center">
-                    <div class="w-full h-44 rounded-2xl overflow-hidden border border-slate-300 bg-white">
-                        <img src="images/hero.png" alt="Hero Illustration" class="w-full h-full object-cover">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- MOBILE TOP PROFILE BANNER & HEADSHOT CARD (Taller Banner Height) -->
-        <div id="mobile-profile-card"
-            class="lg:hidden bg-white rounded-3xl overflow-hidden shadow-md border border-slate-200/80 mb-6 print-hidden">
-            <!-- Banner Cover using images/hero.png (Increased height) -->
-            <div class="relative h-64 sm:h-80 md:h-96 w-full overflow-hidden bg-slate-900">
-                <img src="images/hero.png" alt="Hero Banner" class="w-full h-full object-cover opacity-95">
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent"></div>
-            </div>
-
-            <!-- Overlapping Circular Avatar -->
-            <div class="relative px-6 pb-6 text-center">
-                <div class="relative inline-block -mt-14 sm:-mt-16 z-10">
+                <!-- Avatar Icon / Badge -->
+                <div class="relative inline-block mb-3">
                     <img src="images/profile.png" alt="黃巧希 Joanna Huang"
-                        class="w-28 h-28 sm:w-32 sm:h-32 rounded-full border-4 border-white object-cover shadow-xl bg-white mx-auto">
-                    <span class="absolute bottom-1 right-1 w-5 h-5 bg-emerald-500 border-2 border-white rounded-full"
+                        class="w-20 h-20 rounded-2xl object-cover ring-4 ring-slate-800 shadow-lg shadow-brand-500/20 mx-auto">
+                    <span
+                        class="absolute -bottom-1 -right-1 w-5 h-5 bg-emerald-500 border-2 border-slate-900 rounded-full"
                         title="可隨時上班"></span>
                 </div>
 
-                <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mt-2">
-                    黃巧希 <span class="text-base sm:text-lg font-normal text-slate-500">Joanna</span>
-                </h1>
+                <h1 class="text-2xl font-bold tracking-tight text-white">黃巧希 <span
+                        class="text-lg font-normal text-white block sm:inline">Joanna</span></h1>
                 <p
-                    class="text-xs font-semibold text-brand-600 bg-brand-50 border border-brand-200/60 px-3 py-1 rounded-full inline-block mt-1 tracking-wider uppercase">
+                    class="text-xs font-semibold text-brand-500 bg-brand-500/10 border border-brand-500/20 py-1 px-3 rounded-full inline-block mt-2 tracking-wider uppercase">
                     希望職稱：PM ／ SA ／ 數據分析
                 </p>
-                <p class="text-xs text-slate-500 mt-2 flex items-center justify-center gap-1.5">
+                <p class="text-xs text-slate-400 mt-3 flex items-center justify-center gap-1.5">
                     <i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-500"></i> 新北市 ｜ 待業中（隨時到職）
                 </p>
+            </div>
 
-                <!-- Quick Contact Links & PDF Export (Single Inline Icon + Text / Icon Row) -->
+            <!-- Desktop Navigation Menu (Overview First) -->
+            <nav class="p-4 space-y-1.5 flex flex-col justify-center border-b lg:border-b-0 border-slate-800/80">
+                <button onclick="navigate('overview')" id="nav-overview"
+                    class="w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 flex items-center gap-3 whitespace-nowrap text-slate-300 hover:bg-slate-800/60 nav-btn-active">
+                    <i data-lucide="layout-dashboard" class="w-4 h-4 shrink-0"></i>
+                    <span>整體概覽 <small class="opacity-70 font-normal ml-1 print-hidden">Overview</small></span>
+                </button>
+                <button onclick="navigate('experience')" id="nav-experience"
+                    class="w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 flex items-center gap-3 whitespace-nowrap text-slate-300 hover:bg-slate-800/60">
+                    <i data-lucide="briefcase" class="w-4 h-4 shrink-0"></i>
+                    <span>工作經歷 <small class="opacity-70 font-normal ml-1 print-hidden">Experience</small></span>
+                </button>
+                <button onclick="navigate('projects')" id="nav-projects"
+                    class="w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 flex items-center gap-3 whitespace-nowrap text-slate-300 hover:bg-slate-800/60">
+                    <i data-lucide="code-2" class="w-4 h-4 shrink-0"></i>
+                    <span>專案與作品 <small class="opacity-70 font-normal ml-1 print-hidden">Projects</small></span>
+                </button>
+                <button onclick="navigate('credentials')" id="nav-credentials"
+                    class="w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 flex items-center gap-3 whitespace-nowrap text-slate-300 hover:bg-slate-800/60">
+                    <i data-lucide="award" class="w-4 h-4 shrink-0"></i>
+                    <span>學歷與認證 <small class="opacity-70 font-normal ml-1 print-hidden">Education</small></span>
+                </button>
+            </nav>
+
+            <!-- Sidebar Footer / Contact -->
+            <div class="p-5 bg-slate-950/60 border-t border-slate-800/80 text-xs text-slate-400 space-y-2.5">
                 <div
-                    class="flex items-center justify-between gap-1.5 mt-4 pt-3 border-t border-slate-100 flex-nowrap overflow-x-auto text-[11px] font-medium text-slate-700">
-                    <a href="mailto:joannahep@gmail.com"
-                        class="flex items-center gap-1 hover:text-brand-500 transition-colors py-1 shrink-0">
-                        <i data-lucide="mail" class="w-3.5 h-3.5 text-slate-500"></i>
-                        <span>Email</span>
-                    </a>
-                    <span class="text-slate-300 shrink-0">|</span>
-                    <a href="https://www.linkedin.com/in/joanna-ciaosi-huang/" target="_blank"
-                        class="flex items-center gap-1 hover:text-brand-500 transition-colors py-1 shrink-0">
-                        <i data-lucide="linkedin" class="w-3.5 h-3.5 text-slate-500"></i>
-                        <span>LinkedIn</span>
-                    </a>
-                    <span class="text-slate-300 shrink-0">|</span>
-                    <a href="https://github.com/catseyehuang" target="_blank"
-                        class="flex items-center gap-1 hover:text-brand-500 transition-colors py-1 shrink-0">
-                        <i data-lucide="github" class="w-3.5 h-3.5 text-slate-500"></i>
-                        <span>GitHub</span>
-                    </a>
-                    <span class="text-slate-300 shrink-0">|</span>
-                    <button onclick="window.open('CV_Joanna-Huang.pdf', '_blank')" title="下載 PDF 履歷"
-                        class="w-7 h-7 rounded-full bg-brand-500 hover:bg-brand-600 text-white flex items-center justify-center transition-all shadow-sm shadow-brand-500/30 shrink-0">
-                        <i data-lucide="printer" class="w-3.5 h-3.5"></i>
-                    </button>
+                    class="font-semibold text-slate-300 text-uppercase tracking-wider text-[11px] mb-1 flex items-center gap-1.5">
+                    <i data-lucide="user-check" class="w-3.5 h-3.5 text-brand-500"></i> 聯絡與資訊
+                </div>
+                <a href="mailto:joannahep@gmail.com"
+                    class="flex items-center gap-2.5 text-slate-300 hover:text-brand-500 transition-colors py-1 truncate">
+                    <i data-lucide="mail" class="w-4 h-4 shrink-0 text-slate-500"></i>
+                    <span class="truncate">joannahep@gmail.com</span>
+                </a>
+                <a href="https://www.linkedin.com/in/joanna-ciaosi-huang/" target="_blank"
+                    class="flex items-center gap-2.5 text-slate-300 hover:text-brand-500 transition-colors py-1">
+                    <i data-lucide="linkedin" class="w-4 h-4 shrink-0 text-slate-500"></i>
+                    <span>LinkedIn &#8599;</span>
+                </a>
+                <a href="https://github.com/catseyehuang" target="_blank"
+                    class="flex items-center gap-2.5 text-slate-300 hover:text-brand-500 transition-colors py-1">
+                    <i data-lucide="github" class="w-4 h-4 shrink-0 text-slate-500"></i>
+                    <span>GitHub &#8599;</span>
+                </a>
+                <!--onclick="window.print()"-->
+
+                <button id="download-btn" onclick="window.open('CV_print.pdf', '_blank')"
+                    class="w-full mt-3 bg-gradient-to-r from-brand-600 to-brand-500 text-white py-2.5 px-4 rounded-xl hover:from-brand-700 hover:to-brand-600 transition-all shadow-md shadow-brand-500/20 flex items-center justify-center gap-2 font-medium text-xs group">
+                    <i data-lucide="printer" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
+                    <span>下載 PDF 履歷</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- MOBILE FIXED BOTTOM NAVIGATION BAR (4 Icons, Overview First) -->
+        <nav id="mobile-bottom-nav"
+            class="fixed bottom-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-xl border-t border-slate-800/80 px-2 py-2 flex justify-around items-center lg:hidden shadow-2xl print-hidden">
+            <button onclick="navigate('overview')" id="mobile-nav-overview"
+                class="flex flex-col items-center gap-1 text-brand-500 font-bold transition-all mobile-nav-btn px-3 py-1 rounded-xl">
+                <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                <span class="text-[11px]">整體概覽</span>
+            </button>
+            <button onclick="navigate('experience')" id="mobile-nav-experience"
+                class="flex flex-col items-center gap-1 text-slate-400 hover:text-white transition-all mobile-nav-btn px-3 py-1 rounded-xl">
+                <i data-lucide="briefcase" class="w-5 h-5"></i>
+                <span class="text-[11px]">工作經歷</span>
+            </button>
+            <button onclick="navigate('projects')" id="mobile-nav-projects"
+                class="flex flex-col items-center gap-1 text-slate-400 hover:text-white transition-all mobile-nav-btn px-3 py-1 rounded-xl">
+                <i data-lucide="code-2" class="w-5 h-5"></i>
+                <span class="text-[11px]">專案與作品</span>
+            </button>
+            <button onclick="navigate('credentials')" id="mobile-nav-credentials"
+                class="flex flex-col items-center gap-1 text-slate-400 hover:text-white transition-all mobile-nav-btn px-3 py-1 rounded-xl">
+                <i data-lucide="award" class="w-5 h-5"></i>
+                <span class="text-[11px]">學歷與認證</span>
+            </button>
+        </nav>
+
+        <!-- MAIN CONTENT AREA -->
+        <main class="flex-1 p-4 sm:p-6 lg:p-10 max-w-7xl mx-auto overflow-y-auto pb-24 lg:pb-10">
+
+            <!-- PRINT-ONLY EXECUTIVE CV HERO PROFILE CARD (Visible only during PDF export / window.print()) -->
+            <div id="print-cv-header" class="hidden print-show mb-6 p-6 bg-white border border-slate-300 rounded-3xl">
+                <div class="grid grid-cols-12 gap-6 items-center">
+                    <!-- Left Column: Profile Info & Summary (7 cols) -->
+                    <div class="col-span-7 space-y-3">
+                        <div class="flex items-center gap-4">
+                            <img src="images/profile.png" alt="黃巧希 Joanna Huang"
+                                class="w-20 h-20 rounded-full object-cover border-2 border-slate-300 shrink-0">
+                            <div>
+                                <h1 class="text-2xl font-extrabold text-slate-900">黃巧希 <span
+                                        class="text-base font-normal text-slate-600">Joanna Huang</span></h1>
+                                <p class="text-xs font-mono text-slate-600 mt-0.5">github.com/catseyehuang ｜
+                                    joannahep@gmail.com</p>
+                                <p class="text-xs text-slate-600 mt-0.5">
+                                    新北市 ｜ 待業中（隨時到職）
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-1 pt-1">
+                            <p class="text-sm font-bold text-slate-900">
+                                宏達國際電子股份有限公司 ｜ <span class="text-slate-600">Sr. Specialist</span>
+                            </p>
+                            <p class="text-xs font-semibold text-slate-700">
+                                15~16 年工作經歷 ｜ 希望職稱：<span class="text-brand-600 font-bold">PM ／ SA ／ 數據分析</span>
+                            </p>
+                        </div>
+
+                        <p
+                            class="text-xs text-slate-800 bg-white p-3 rounded-xl border border-slate-200 font-medium leading-relaxed">
+                            擁有 <strong class="text-slate-800">15+ 年跨職能實戰經歷，專精 SaaS 系統治理、數據分析、數位行銷與網站企劃行銷專案</strong> ＋ 近期
+                            <strong class="text-slate-900">AI
+                                應用轉型</strong>（職訓局 400 小時數據分析與車況之眼專題）。
+                        </p>
+                    </div>
+
+                    <!-- Right Column: Hero Image Frame (5 cols) -->
+                    <div class="col-span-5 flex justify-center">
+                        <div class="w-full h-44 rounded-2xl overflow-hidden border border-slate-300 bg-white">
+                            <img src="images/hero.png" alt="Hero Illustration" class="w-full h-full object-cover">
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- ==================== SECTION 1: WORK EXPERIENCE (LINKEDIN STYLE - FIRST TAB) ==================== -->
-        <section id="section-experience" class="block animate-fade-in space-y-6">
+            <!-- MOBILE TOP PROFILE BANNER & HEADSHOT CARD (Taller Banner Height) -->
+            <div id="mobile-profile-card"
+                class="lg:hidden bg-white rounded-3xl overflow-hidden shadow-md border border-slate-200/80 mb-6 print-hidden">
+                <!-- Banner Cover using images/hero.png (Increased height) -->
+                <div class="relative h-64 sm:h-80 md:h-96 w-full overflow-hidden bg-slate-900">
+                    <img src="images/hero.png" alt="Hero Banner" class="w-full h-full object-cover opacity-95">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent">
+                    </div>
+                </div>
 
-            <!-- Section Header -->
-            <div
-                class="bg-gradient-to-r from-slate-900 to-slate-850 rounded-3xl p-6 sm:p-8 text-white shadow-xl border border-slate-800 relative overflow-hidden">
-                <!--<div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80">-->
-                <div class="max-w-3xl">
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight flex items-center gap-3">
-                        <i data-lucide="briefcase" class="w-7 h-7 text-brand-500"></i>
-                        <span>工作經歷與成長軌跡</span>
-                    </h2>
-                    <p class="text-slate-300 text-sm mt-2 leading-relaxed">
-                        15+ 年職涯由深厚的網頁設計與數位行銷基石，在企業 IT 部門負責系統治理、合約談判與數據分析，並在 2026 年完成 400 小時的 AI
-                        數據分析與機器學習應用培訓進修課程，將過往累積的經驗，再延伸並系統化學習到 AI 落地實作。
+                <!-- Overlapping Circular Avatar -->
+                <div class="relative px-6 pb-6 text-center">
+                    <div class="relative inline-block -mt-14 sm:-mt-16 z-10">
+                        <img src="images/profile.png" alt="黃巧希 Joanna Huang"
+                            class="w-28 h-28 sm:w-32 sm:h-32 rounded-full border-4 border-white object-cover shadow-xl bg-white mx-auto">
+                        <span
+                            class="absolute bottom-1 right-1 w-5 h-5 bg-emerald-500 border-2 border-white rounded-full"
+                            title="可隨時上班"></span>
+                    </div>
+
+                    <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mt-2">
+                        黃巧希 <span class="text-base sm:text-lg font-normal text-slate-500">Joanna</span>
+                    </h1>
+                    <p
+                        class="text-xs font-semibold text-brand-600 bg-brand-50 border border-brand-200/60 px-3 py-1 rounded-full inline-block mt-1 tracking-wider uppercase">
+                        希望職稱：PM ／ SA ／ 數據分析
                     </p>
-                </div>
-            </div>
+                    <p class="text-xs text-slate-500 mt-2 flex items-center justify-center gap-1.5">
+                        <i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-500"></i> 新北市 ｜ 待業中（隨時到職）
+                    </p>
 
-            <!-- LinkedIn Style Downward Expanded Layout Container -->
-            <div class="bg-white rounded-3xl p-6 sm:p-8 sm:p-10 shadow-sm border border-slate-200/80 space-y-10"
-                id="experience-linkedin-container">
-                <!-- Populated dynamically by JavaScript -->
-            </div>
-        </section>
-
-        <!-- ==================== SECTION 2: OVERVIEW (BENTO GRID & FAST SCAN) ==================== -->
-        <section id="section-overview" class="hidden animate-fade-in space-y-8">
-
-
-
-            <!-- Bento Box 1: Hero Profile with Background Image -->
-            <div
-                class="bg-gradient-to-br from-slate-900 via-slate-850 to-slate-900 text-white rounded-3xl p-6 sm:p-8 lg:p-10 shadow-xl border border-slate-800 relative overflow-hidden">
-                <!-- Background decorative glow (Tuned to light/subtle - Hidden on mobile) -->
-                <div
-                    class="hidden lg:block absolute top-0 right-0 w-96 h-96 bg-brand-500/5 rounded-full blur-3xl pointer-events-none">
-                </div>
-                <div
-                    class="hidden lg:block absolute bottom-0 left-1/3 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl pointer-events-none">
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
-                    <!-- Left Column: Intro & Superpowers (12 cols on mobile, 7 cols on desktop) -->
-                    <div class="col-span-12 lg:col-span-7 space-y-5">
-                        <div
-                            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 border border-brand-500/30 text-brand-500 text-xs font-semibold tracking-wide">
-                            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
-                            <span>OVERVIEW</span>
-                        </div>
-
-                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
-                            化繁為簡 <span
-                                class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 via-amber-400 to-orange-400">
-                                系統整合者</span>
-                        </h2>
-
-                        <p class="text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
-                            擁有 <strong class="text-white font-semibold">15+ 年跨職能實戰資歷</strong>，專精於 <strong
-                                class="text-amber-400 font-semibold">SaaS 系統治理、數據分析、數位行銷與跨部門專案管理</strong>。2026 年完成職訓局
-                            400 小時「數據分析暨機器學習應用班」，並主導「車況之眼」AI 視覺巡檢系統專題。
-                        </p>
-
-                        <div
-                            class="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-4 text-xs sm:text-sm text-slate-200 space-y-2 leading-relaxed">
-                            <div class="flex items-start gap-2.5">
-                                <span class="text-brand-500 font-bold shrink-0 mt-0.5">✔ 核心優勢：</span>
-                                <span>同時看懂<strong class="text-white">「系統底層架構」</strong>、<strong
-                                        class="text-white">「業務商業需求」</strong>與<strong
-                                        class="text-white">「數據決策意義」</strong>，是 AI 產品從概念走向實質商業落地最強的跨界橋樑。</span>
-                            </div>
-                            <div class="flex items-start gap-2.5">
-                                <span class="text-amber-400 font-bold shrink-0 mt-0.5">✔ 管理實戰：</span>
-                                <span>具備帶領 IT、工程、行銷業務與外包廠商協作交付的豐富經驗，善於在預算限制下進行供應商談判與資源優化。</span>
-                            </div>
-                        </div>
-
-                        <!-- Action Buttons -->
-                        <div class="flex flex-wrap gap-3 pt-2">
-                            <button onclick="navigate('projects')"
-                                class="bg-brand-500 hover:bg-brand-600 text-white px-5 py-2.5 rounded-xl font-medium text-sm transition-all shadow-lg shadow-brand-500/25 flex items-center gap-2">
-                                <span>查看 AI 實作作品</span>
-                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                            </button>
-                            <button onclick="navigate('experience')"
-                                class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-5 py-2.5 rounded-xl font-medium text-sm transition-all flex items-center gap-2">
-                                <span>瀏覽 8 年 HTC 經歷</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Right Column: Profile Image (@images/hero.png) (5 cols - Hidden on mobile) -->
-                    <div class="hidden lg:flex lg:col-span-5 justify-center">
-                        <div class="relative w-full max-w-sm lg:max-w-none group">
-                            <!-- Glowing frame background -->
-                            <div
-                                class="absolute -inset-1 bg-gradient-to-r from-brand-500 to-amber-500 rounded-3xl blur opacity-30 group-hover:opacity-60 transition duration-500">
-                            </div>
-                            <!-- Image container -->
-                            <div
-                                class="relative bg-slate-900 rounded-2xl overflow-hidden border-2 border-slate-700/80 shadow-2xl">
-                                <img src="images/hero.png" alt="黃巧希 Joanna Huang - 專業形象與核心標籤"
-                                    class="w-full h-auto object-cover transform group-hover:scale-105 transition duration-700 ease-out">
-                                <div
-                                    class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80">
-                                </div>
-                                <div class="absolute bottom-3 left-3 right-3 text-center">
-                                    <p
-                                        class="text-[11px] font-mono tracking-widest text-amber-300 uppercase bg-slate-900/90 py-1 px-3 rounded-lg border border-slate-700 backdrop-blur-md inline-block">
-                                        Organize • Plan • Optimize • Deliver
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Featured AI Project Spotlight in Overview (Moved Up) -->
-            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80 relative overflow-hidden">
-
-                <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
-                    <div class="space-y-3 max-w-2xl">
-                        <div class="flex items-center gap-2.5">
-                            <span
-                                class="px-2.5 py-0.5 bg-brand-500 text-white text-[11px] font-bold rounded-md uppercase tracking-wider">近期代表作</span>
-                            <span class="text-xs text-slate-400 font-mono">2026/05 – 2026/07 獨立結訓專題</span>
-                        </div>
-                        <h3
-                            class="text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-tight flex items-center gap-3">
-                            <span>車況之眼：智慧視覺巡檢系統</span>
-                            <i data-lucide="external-link" class="w-5 h-5 text-brand-500 opacity-80"></i>
-                        </h3>
-                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                            針對租賃車輛交車與歸還痛點，與團隊協同規劃並實作以 <strong class="text-amber-500">YOLOv8 AI 視覺辨識</strong>
-                            為核心的標準化車損紀錄系統。完成 <strong class="text-brand-400">系統架構規劃、數據 ETL /
-                                EDA、前後端串接與後台儀表板開發</strong>，大幅提升檢驗可追溯性並降低爭議。
-                        </p>
-                        <div class="flex flex-wrap gap-2 pt-1">
-                            <span
-                                class="px-2.5 py-1 bg-slate-100 border border-slate-200 rounded-lg text-xs font-mono text-slate-700">#Python</span>
-                            <span
-                                class="px-2.5 py-1 bg-slate-100 border border-slate-200 rounded-lg text-xs font-mono text-slate-700">#YOLOv8</span>
-                            <span
-                                class="px-2.5 py-1 bg-slate-100 border border-slate-200 rounded-lg text-xs font-mono text-slate-700">#Firebase</span>
-                            <span
-                                class="px-2.5 py-1 bg-slate-100 border border-slate-200 rounded-lg text-xs font-mono text-slate-700">#Dashboard</span>
-                            <span
-                                class="px-2.5 py-1 bg-slate-100 border border-slate-200 rounded-lg text-xs font-mono text-slate-700">#ETL
-                                / EDA</span>
-                        </div>
-                    </div>
-
-                    <div class="shrink-0 flex flex-col sm:flex-row md:flex-col gap-3">
-                        <button onclick="navigate('projects')"
-                            class="bg-brand-500 hover:bg-brand-600 text-white px-6 py-3 rounded-xl font-bold text-sm transition-all text-center shadow-lg shadow-brand-500/20">
-                            深入了解技術架構
-                        </button>
+                    <!-- Quick Contact Links & PDF Export (Single Inline Icon + Text / Icon Row) -->
+                    <div
+                        class="flex items-center justify-between gap-1.5 mt-4 pt-3 border-t border-slate-100 flex-nowrap overflow-x-auto text-[11px] font-medium text-slate-700">
+                        <a href="mailto:joannahep@gmail.com"
+                            class="flex items-center gap-1 hover:text-brand-500 transition-colors py-1 shrink-0">
+                            <i data-lucide="mail" class="w-3.5 h-3.5 text-slate-500"></i>
+                            <span>Email</span>
+                        </a>
+                        <span class="text-slate-300 shrink-0">|</span>
+                        <a href="https://www.linkedin.com/in/joanna-ciaosi-huang/" target="_blank"
+                            class="flex items-center gap-1 hover:text-brand-500 transition-colors py-1 shrink-0">
+                            <i data-lucide="linkedin" class="w-3.5 h-3.5 text-slate-500"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                        <span class="text-slate-300 shrink-0">|</span>
                         <a href="https://github.com/catseyehuang" target="_blank"
+                            class="flex items-center gap-1 hover:text-brand-500 transition-colors py-1 shrink-0">
+                            <i data-lucide="github" class="w-3.5 h-3.5 text-slate-500"></i>
+                            <span>GitHub</span>
+                        </a>
+                        <span class="text-slate-300 shrink-0">|</span>
+                        <button onclick="window.open('CV_print.pdf', '_blank')" title="下載 PDF 履歷"
+                            class="w-7 h-7 rounded-full bg-brand-500 hover:bg-brand-600 text-white flex items-center justify-center transition-all shadow-sm shadow-brand-500/30 shrink-0">
+                            <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== SECTION 1: WORK EXPERIENCE (LINKEDIN STYLE - FIRST TAB) ==================== -->
+            <section id="section-experience" class="block animate-fade-in space-y-6">
+
+                <!-- Section Header -->
+                <div
+                    class="bg-gradient-to-r from-slate-900 to-slate-850 rounded-3xl p-6 sm:p-8 text-white shadow-xl border border-slate-800 relative overflow-hidden">
+                    <!--<div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80">-->
+                    <div class="max-w-3xl">
+                        <h2
+                            class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight flex items-center gap-3">
+                            <i data-lucide="briefcase" class="w-7 h-7 text-brand-500"></i>
+                            <span>工作經歷與成長軌跡</span>
+                        </h2>
+                        <p class="text-slate-300 text-sm mt-2 leading-relaxed">
+                            15+ 年職涯由深厚的網頁設計與數位行銷基石，在企業 IT 部門負責系統治理、合約談判與數據分析，並在 2026 年完成 400 小時的 AI
+                            數據分析與機器學習應用培訓進修課程，將過往累積的經驗，再延伸並系統化學習到 AI 落地實作。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- LinkedIn Style Downward Expanded Layout Container -->
+                <div class="bg-white rounded-3xl p-6 sm:p-8 sm:p-10 shadow-sm border border-slate-200/80 space-y-10"
+                    id="experience-linkedin-container">
+                    <!-- Populated dynamically by JavaScript -->
+                </div>
+            </section>
+
+            <!-- ==================== SECTION 2: OVERVIEW (BENTO GRID & FAST SCAN) ==================== -->
+            <section id="section-overview" class="hidden animate-fade-in space-y-8">
+
+
+
+                <!-- Bento Box 1: Hero Profile with Background Image -->
+                <div
+                    class="bg-gradient-to-br from-slate-900 via-slate-850 to-slate-900 text-white rounded-3xl p-6 sm:p-8 lg:p-10 shadow-xl border border-slate-800 relative overflow-hidden">
+                    <!-- Background decorative glow (Tuned to light/subtle - Hidden on mobile) -->
+                    <div
+                        class="hidden lg:block absolute top-0 right-0 w-96 h-96 bg-brand-500/5 rounded-full blur-3xl pointer-events-none">
+                    </div>
+                    <div
+                        class="hidden lg:block absolute bottom-0 left-1/3 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl pointer-events-none">
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+                        <!-- Left Column: Intro & Superpowers (12 cols on mobile, 7 cols on desktop) -->
+                        <div class="col-span-12 lg:col-span-7 space-y-5">
+                            <div
+                                class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 border border-brand-500/30 text-brand-500 text-xs font-semibold tracking-wide">
+                                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                                <span>OVERVIEW</span>
+                            </div>
+
+                            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+                                化繁為簡的 <span
+                                    class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 via-amber-400 to-orange-400">
+                                    系統整合者</span>
+                            </h2>
+
+                            <p class="text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
+                                擁有 <strong class="text-white font-semibold">15+ 年跨職能實戰資歷</strong>，專精於 <strong
+                                    class="text-amber-400 font-semibold">SaaS 系統治理、數據分析、數位行銷與跨網站企劃專案</strong>。2026
+                                年完成職訓局
+                                400 小時「數據分析暨機器學習應用班」，並主導「車況之眼:智慧視覺巡檢系統」專題。
+                            </p>
+
+                            <div
+                                class="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-4 text-xs sm:text-sm text-slate-200 space-y-2 leading-relaxed">
+                                <div class="flex items-start gap-2.5">
+                                    <span class="text-brand-500 font-bold shrink-0 mt-0.5">✔ 核心優勢：</span>
+                                    <span>同時看懂<strong>「系統串接架構」</strong>、<strong>「商業需求 Business
+                                            Requirement」</strong>與<strong>「數據驅動 Data Driven」</strong>，是 AI
+                                        產品從概念走向商業落地最強的跨界橋樑。</span>
+                                </div>
+                                <div class="flex items-start gap-2.5">
+                                    <span class="text-amber-400 font-bold shrink-0 mt-0.5">✔ 管理實戰：</span>
+                                    <span>具備帶領 IT、Engineer、行銷業務與外包廠商協作交付經驗，善於在預算限制下進行供應商談判與資源優化。</span>
+                                </div>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="flex flex-wrap gap-3 pt-2">
+                                <button onclick="navigate('projects')"
+                                    class="bg-brand-500 hover:bg-brand-600 text-white px-5 py-2.5 rounded-xl font-medium text-sm transition-all shadow-lg shadow-brand-500/25 flex items-center gap-2">
+                                    <span>查看 AI 實作作品</span>
+                                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                                </button>
+                                <button onclick="navigate('experience')"
+                                    class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-5 py-2.5 rounded-xl font-medium text-sm transition-all flex items-center gap-2">
+                                    <span>瀏覽 8 年 HTC 經歷</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Right Column: Profile Image (@images/hero.png) (5 cols - Hidden on mobile) -->
+                        <div class="hidden lg:flex lg:col-span-5 justify-center">
+                            <div class="relative w-full max-w-sm lg:max-w-none group">
+                                <!-- Glowing frame background -->
+                                <div
+                                    class="absolute -inset-1 bg-gradient-to-r from-brand-500 to-amber-500 rounded-3xl blur opacity-30 group-hover:opacity-60 transition duration-500">
+                                </div>
+                                <!-- Image container -->
+                                <div
+                                    class="relative bg-slate-900 rounded-2xl overflow-hidden border-2 border-slate-700/80 shadow-2xl">
+                                    <img src="images/hero.png" alt="黃巧希 Joanna Huang - 專業形象與核心標籤"
+                                        class="w-full h-auto object-cover transform group-hover:scale-105 transition duration-700 ease-out">
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80">
+                                    </div>
+                                    <div class="absolute bottom-3 left-3 right-3 text-center">
+                                        <p
+                                            class="text-[11px] font-mono tracking-widest text-amber-300 uppercase bg-slate-900/90 py-1 px-3 rounded-lg border border-slate-700 backdrop-blur-md inline-block">
+                                            Organize • Plan • Optimize • Deliver
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Featured AI Project Spotlight in Overview (Moved Up) -->
+                <div
+                    class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80 relative overflow-hidden print-show">
+
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
+                        <div class="space-y-3 max-w-2xl">
+                            <div class="flex items-center gap-2.5">
+                                <span
+                                    class="px-2.5 py-0.5 bg-brand-500 text-white text-[11px] font-bold rounded-md uppercase tracking-wider">近期代表作</span>
+                                <span class="text-xs text-slate-400 font-mono">2026/05 – 2026/07 結訓成果專題</span>
+                            </div>
+                            <h3
+                                class="text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-tight flex items-center gap-3">
+                                <span>車況之眼：智慧視覺巡檢系統</span>
+                                <i data-lucide="external-link" class="w-5 h-5 text-brand-500 opacity-80"></i>
+                            </h3>
+                            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                                針對租賃車輛交車與歸還痛點，與團隊協同規劃並實作以 <strong class="text-amber-500">YOLOv8 AI 視覺辨識</strong>
+                                為核心的標準化車損紀錄系統。完成 <strong class="text-brand-400">系統架構規劃、數據 ETL /
+                                    EDA、前後端串接與後台儀表板開發</strong>，大幅提升檢驗可追溯性並降低爭議。
+                            </p>
+                            <div class="flex flex-wrap gap-2 pt-1">
+                                <span
+                                    class="px-2.5 py-1 bg-slate-100 border border-slate-200 rounded-lg text-xs font-mono text-slate-700">Python
+                                    (PYTorch)</span>
+                                <span
+                                    class="px-2.5 py-1 bg-slate-100 border border-slate-200 rounded-lg text-xs font-mono text-slate-700">YOLOv8</span>
+                                <span
+                                    class="px-2.5 py-1 bg-slate-100 border border-slate-200 rounded-lg text-xs font-mono text-slate-700">Firebase
+                                    / Firestore</span>
+                                <span
+                                    class="px-2.5 py-1 bg-slate-100 border border-slate-200 rounded-lg text-xs font-mono text-slate-700">GCP
+                                    Cloud Run</span>
+                                <span
+                                    class="px-2.5 py-1 bg-slate-100 border border-slate-200 rounded-lg text-xs font-mono text-slate-700">Dashboard</span>
+                            </div>
+                            <p>⚡ 商業效益：智慧拍攝把照片拍對， AI 車損辨識提供疑似提示， Dashboard 人工複核</p>
+                        </div>
+
+                        <div class="shrink-0 flex flex-col sm:flex-row md:flex-col gap-3">
+                            <button onclick="navigate('projects')"
+                                class="bg-brand-500 hover:bg-brand-600 text-white px-6 py-3 rounded-xl font-bold text-sm transition-all text-center shadow-lg shadow-brand-500/20">
+                                了解技術架構
+                            </button>
+                            <!-- <a href="https://github.com/catseyehuang" target="_blank"
                             class="border border-slate-200 hover:border-slate-300 text-slate-700 hover:text-brand-500 px-6 py-2.5 rounded-xl text-xs font-medium transition-all text-center flex items-center justify-center gap-2 bg-slate-50">
                             <i data-lucide="youtube" class="w-5 h-5"></i>
                             <span>查看影片</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Fast Scan Interactive Filter Bar 
-            <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-200/80">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
-                    <h3 class="text-sm font-bold text-slate-800 flex items-center gap-2">
-                        <i data-lucide="filter" class="w-4 h-4 text-brand-500"></i>
-                        <span>專長快速焦點篩選（點擊過濾重點成果）：</span>
-                    </h3>
-                    <span class="text-xs text-slate-400">支援即時互動篩選</span>
-                </div>
-                <div class="flex flex-wrap gap-2" id="skill-filter-container">
-                    <button onclick="filterDomain('all', this)"
-                        class="px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all border border-slate-300 bg-slate-900 text-white filter-btn-active">
-                        ⚡ 全部專長展示
-                    </button>
-                    <button onclick="filterDomain('ai', this)"
-                        class="px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all border border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100 hover:border-slate-300 flex items-center gap-1.5">
-                        <span>🤖 AI 應用 &amp; 機器學習</span>
-                    </button>
-                    <button onclick="filterDomain('data', this)"
-                        class="px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all border border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100 hover:border-slate-300 flex items-center gap-1.5">
-                        <span>📊 Power BI &amp; 數據 ETL</span>
-                    </button>
-                    <button onclick="filterDomain('saas', this)"
-                        class="px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all border border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100 hover:border-slate-300 flex items-center gap-1.5">
-                        <span>⚙️ SaaS 系統治理 &amp; 談判</span>
-                    </button>
-                    <button onclick="filterDomain('web', this)"
-                        class="px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all border border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100 hover:border-slate-300 flex items-center gap-1.5">
-                        <span>🌐 全球數位行銷 &amp; 官網</span>
-                    </button>
-                </div>
-            </div>-->
-
-            <!-- Bento Box 2: 4 Key Impact Stat Cards -->
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-                <!-- Stat 1 -->
-                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200/80 hover:shadow-md hover:border-brand-500/50 transition-all group relative overflow-hidden"
-                    data-domain="saas">
-                    <div
-                        class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                        <i data-lucide="shield-check" class="w-5 h-5"></i>
-                    </div>
-                    <div class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">300<span
-                            class="text-blue-600 font-bold">+</span> 帳號</div>
-                    <div class="text-xs font-bold text-slate-700 mt-1">SaaS 授權治理 ｜ 百萬預算</div>
-                    <p class="text-[11px] text-slate-500 mt-2 leading-relaxed">主導 HTC Atlassian
-                        授權生命週期，建立離職權限自動回收流程，落實最小權限原則。</p>
-                </div>
-
-                <!-- Stat 2 -->
-                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200/80 hover:shadow-md hover:border-brand-500/50 transition-all group relative overflow-hidden"
-                    data-domain="ai">
-                    <div
-                        class="w-10 h-10 rounded-xl bg-brand-50 text-brand-500 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                        <i data-lucide="cpu" class="w-5 h-5"></i>
-                    </div>
-                    <div class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">400 <span
-                            class="text-brand-500 text-lg">hr</span></div>
-                    <div class="text-xs font-bold text-slate-700 mt-1">AI 數據分析與機器學習實戰</div>
-                    <p class="text-[11px] text-slate-500 mt-2 leading-relaxed">職訓局艾鍗學院專業完訓，獨立開發 YOLOv8 租賃車輛 AI
-                        視覺辨識智慧巡檢系統。</p>
-                </div>
-
-                <!-- Stat 3 -->
-                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200/80 hover:shadow-md hover:border-brand-500/50 transition-all group relative overflow-hidden"
-                    data-domain="web">
-                    <div
-                        class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                        <i data-lucide="globe" class="w-5 h-5"></i>
-                    </div>
-                    <div class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">10 <span
-                            class="text-amber-600 text-lg">語系</span></div>
-                    <div class="text-xs font-bold text-slate-700 mt-1">全球多語系官網營運與改版</div>
-                    <p class="text-[11px] text-slate-500 mt-2 leading-relaxed">統籌 htc.com / vive.com 跨 6 大地區發布，制定標準化翻譯發布
-                        SOP 與 SEO 優化。</p>
-                </div>
-
-                <!-- Stat 4 -->
-                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200/80 hover:shadow-md hover:border-brand-500/50 transition-all group relative overflow-hidden"
-                    data-domain="data">
-                    <div
-                        class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                        <i data-lucide="bar-chart-3" class="w-5 h-5"></i>
-                    </div>
-                    <div class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">8<span
-                            class="text-emerald-600 font-bold">+</span> 年</div>
-                    <div class="text-xs font-bold text-slate-700 mt-1">跨系統整合與商業決策分析</div>
-                    <p class="text-[11px] text-slate-500 mt-2 leading-relaxed">建立 Power BI 授權使用率與廣告成效儀表板，串接跨平台 API
-                        數據支持合約續約談判。</p>
-                </div>
-            </div>
-
-            <!-- Bento Box 3: Charts & Competency Matrix -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <!-- Doughnut Chart -->
-                <div
-                    class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200/80 flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-base font-bold text-slate-800 flex items-center gap-2">
-                                <i data-lucide="pie-chart" class="w-4 h-4 text-brand-500"></i>
-                                <span>職涯經驗領域配置</span>
-                            </h3>
-                            <span
-                                class="text-[11px] bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full font-medium">總年資
-                                15+ 年</span>
+                        </a> -->
                         </div>
-                        <p class="text-xs text-slate-500 mb-4">清楚呈現從網頁設計、行銷管理到企業 IT 雲端與 AI 應用的演進結構。</p>
-                    </div>
-                    <div class="chart-container">
-                        <canvas id="domainChart"></canvas>
                     </div>
                 </div>
 
-                <!-- Radar Chart -->
+
+
+
+
+            </section>
+
+            <!-- ==================== SECTION 3: PROJECTS & VIBE CODING (AI SHOWCASE) ==================== -->
+            <section id="section-projects" class="hidden animate-fade-in space-y-6">
+
+                <!-- Section Header -->
                 <div
-                    class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200/80 flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-base font-bold text-slate-800 flex items-center gap-2">
-                                <i data-lucide="target" class="w-4 h-4 text-brand-500"></i>
-                                <span>AI PM 核心競爭力矩陣</span>
-                            </h3>
-                            <span
-                                class="text-[11px] bg-brand-50 text-brand-600 px-2.5 py-1 rounded-full font-medium">六維度指標</span>
-                        </div>
-                        <p class="text-xs text-slate-500 mb-4">結合科技理解與商業溝通，克服工程開發與業務目標間的溝通壁壘。</p>
-                    </div>
-                    <div class="chart-container">
-                        <canvas id="skillsChart"></canvas>
+                    class="bg-gradient-to-r from-slate-900 to-slate-850 rounded-3xl p-6 sm:p-8 text-white shadow-xl border border-slate-800 relative overflow-hidden">
+
+                    <div class="max-w-3xl">
+                        <h2
+                            class="text-2xl sm:text-3xl font-extrabold text-slate-100 tracking-tight flex items-center gap-3">
+                            <i data-lucide="code-2" class="w-7 h-7 text-brand-500"></i>
+                            <span>專案成就 &amp; Vibe Coding 作品</span>
+                        </h2>
+                        <p class="text-slate-200 text-sm mt-2 leading-relaxed">
+                            善用現代 AI 輔助開發（Vibe Coding）結合 Python 腳本與 API 串接，獨立解決營運現場的真實痛點。以下為託管於 GitHub 的實戰系統與工具庫。
+                        </p>
                     </div>
                 </div>
-            </div>
 
+                <!-- Projects Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
-
-        </section>
-
-        <!-- ==================== SECTION 3: PROJECTS & VIBE CODING (AI SHOWCASE) ==================== -->
-        <section id="section-projects" class="hidden animate-fade-in space-y-6">
-
-            <!-- Section Header -->
-            <div
-                class="bg-gradient-to-r from-slate-900 to-slate-850 rounded-3xl p-6 sm:p-8 text-white shadow-xl border border-slate-800 relative overflow-hidden">
-
-                <div class="max-w-3xl">
-                    <h2
-                        class="text-2xl sm:text-3xl font-extrabold text-slate-100 tracking-tight flex items-center gap-3">
-                        <i data-lucide="code-2" class="w-7 h-7 text-brand-500"></i>
-                        <span>專案成就 &amp; Vibe Coding 作品</span>
-                    </h2>
-                    <p class="text-slate-200 text-sm mt-2 leading-relaxed">
-                        善用現代 AI 輔助開發（Vibe Coding）結合 Python 腳本與 API 串接，獨立解決企業營運現場的真實痛點。以下為託管於 GitHub 的實戰系統與工具庫。
-                    </p>
-                </div>
-            </div>
-
-            <!-- Projects Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-
-                <!-- Project 1: AI Vision Car Inspection (Hero 2-Col Span) -->
-                <div
-                    class="lg:col-span-2 bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80 relative">
-
+                    <!-- Project 1: AI Vision Car Inspection (Hero 2-Col Span) -->
                     <div
-                        class="absolute top-0 right-0 p-8 opacity-10 text-9xl font-extrabold pointer-events-none group-hover:scale-110 transition-transform duration-700">
-                        AI</div>
-                    <div class="relative z-10 space-y-6">
-                        <div class="flex flex-wrap items-center justify-between gap-3">
-                            <div class="flex items-center gap-3">
-                                <span
-                                    class="px-3 py-1 bg-brand-500 text-white text-xs font-bold rounded-lg tracking-wide uppercase">AI
-                                    機器學習．
-                                    視覺辨識專題 ｜ 2026/05 – 2026/07</span>
-                                <span
-                                    class="px-2.5 py-0.5 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs rounded-md font-mono">系統整合與實作</span>
-                            </div>
-                            <a href="https://www.youtube.com/watch?v=f2Q7gH9TqO8" target="_blank"
+                        class="lg:col-span-2 bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80 relative">
+
+                        <div
+                            class="absolute top-0 right-0 p-8 opacity-10 text-9xl font-extrabold pointer-events-none group-hover:scale-110 transition-transform duration-700">
+                            AI</div>
+                        <div class="relative z-10 space-y-6">
+                            <div class="flex flex-wrap items-center justify-between gap-3">
+                                <div class="flex items-center gap-3">
+                                    <span
+                                        class="px-3 py-1 bg-brand-500 text-white text-xs font-bold rounded-lg tracking-wide uppercase">數據分析暨機器學習專題
+                                        ｜ 2026/05 – 2026/07</span>
+                                    <span
+                                        class="px-2.5 py-0.5 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs rounded-md font-mono">視覺辨識應用專題</span>
+                                </div>
+                                <!-- <a href="https://www.youtube.com/watch?v=f2Q7gH9TqO8" target="_blank"
                                 class="text-xs bg-slate-300 hover:bg-slate-700 text-slate-600 px-4 py-2 rounded-xl border border-slate-700 flex items-center gap-2 transition-all">
                                 <i data-lucide="youtube" class="w-4 h-4"></i>
                                 <span>查看影片</span>
-                            </a>
-                        </div>
+                            </a> -->
+                            </div>
 
-                        <div>
-                            <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">車況之眼：智慧視覺巡檢系統</h3>
-                            <p class="text-slate-400 text-xs font-mono mt-1">AI Vision Car Inspection System for Rental
-                                Vehicle Governance</p>
-                        </div>
+                            <div>
+                                <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">車況之眼：智慧視覺巡檢系統
+                                </h3>
+                                <p class="text-slate-400 text-xs font-mono mt-1">AI Car Inspection System <!--for Rental
+                                Vehicle Governance--></p>
+                            </div>
 
-                        <p class="text-slate-700 text-sm leading-relaxed max-w-4xl">
-                            以 AI 視覺辨識驅動智慧巡檢，打造標準化、可追溯的租賃車況管理系統。從 <strong class="text-slate-900">系統整合規劃、數據 ETL / EDA
-                                流程、機器學習模型訓練與驗證，到前後端 API 串接與管理 Dashboard 設計</strong> 由團隊協同完成，展現從商務情境至技術落地的完整實力。
-                        </p>
+                            <p class="text-slate-700 text-sm leading-relaxed max-w-4xl">
+                                針對租賃車輛交車與歸還痛點，與團隊協同規劃並實作以 YOLOv8 AI 視覺辨識為核心的標準化智慧拍攝與車損辨識系統，打造把照片拍對，標準化、可追溯的租賃車況管理系統。完成
+                                <strong class="text-slate-900">系統整合規劃、數據 ETL / EDA
+                                    流程、到前後端 API 串接與管理 Dashboard 設計</strong>，展現從商務情境至技術落地的完整實力。
+                            </p>
 
-                        <!-- Terminal Milestone Box -->
-                        <div
-                            class="bg-slate-50 p-4 rounded-2xl border border-slate-200/60 text-xs text-slate-700 space-y-1.5 font-mono">
-                            <p>&gt; [ETL / EDA] 系統性處理車輛外觀損傷圖片數據集，完成標記標準化與特徵分析</p>
-                            <p>&gt; [AI Model] 訓練與優化 YOLOv8 視覺辨識模型，精準辨識車體刮痕、凹陷與損毀部位</p>
-                            <p>&gt; [Integration] 串接 Firebase 雲端資料庫與 GCP 服務，打造即時反應的車損管理後台</p>
-                            <p>&gt; [Dashboard] 設計具操作性之管理後台，支援多視角檢視與決策依據</p>
-                            <p class="font-bold text-slate-900">⚡ 商業實質效益：</p>
-                            <p>• 產出可行動化數據報表，直接支持與原廠續約談判降轉，大幅優化年度 IT 預算</p>
-                        </div>
-                        <!--<div
+                            <!-- Terminal Milestone Box -->
+                            <div
+                                class="bg-slate-50 p-4 rounded-2xl border border-slate-200/60 text-xs text-slate-700 space-y-1.5 font-mono">
+                                <p>&gt; [ETL / EDA] 系統性處理車輛外觀損傷圖片數據集，完成標記標準化與特徵分析</p>
+                                <p>&gt; [AI Model] 訓練與優化 YOLOv8 視覺辨識模型，精準辨識車體刮痕、凹陷與損毀部位</p>
+                                <p>&gt; [Integration] 串接 Firebase 雲端資料庫與 GCP 服務，打造即時反應的車損管理後台</p>
+                                <p>&gt; [Dashboard] 設計具操作性之管理後台，支援多視角檢視與決策依據</p>
+                                <p class="font-bold text-brand-600">⚡ 商業效益：智慧拍攝把照片拍對， AI 車損辨識提供疑似提示， Dashboard 人工複核</p>
+                            </div>
+                            <!--<div
                             class="bg-slate-950/80 rounded-2xl p-4 sm:p-5 border border-slate-800 font-mono text-xs text-slate-300 space-y-2">
                             <div class="flex items-center gap-2 text-slate-500 border-b border-slate-800/80 pb-2 mb-2">
                                 <span class="w-2.5 h-2.5 rounded-full bg-red-500"></span>
@@ -909,388 +670,691 @@
                             <p class="text-sky-300">&gt; [Integration] 串接 Firebase 雲端資料庫與 GCP 服務，打造即時反應的車損管理後台</p>
                         </div>-->
 
-                        <div class="flex flex-wrap gap-2 pt-2">
-                            <span
-                                class="px-3 py-1 bg-slate-800/90 text-slate-300 text-xs rounded-lg border border-slate-700/80">Python
-                                (PyTorch)</span>
-                            <span
-                                class="px-3 py-1 bg-slate-800/90 text-slate-300 text-xs rounded-lg border border-slate-700/80">YOLOv8
-                                Vision Model</span>
-                            <span
-                                class="px-3 py-1 bg-slate-800/90 text-slate-300 text-xs rounded-lg border border-slate-700/80">Firebase
-                                / Firestore</span>
-                            <span
-                                class="px-3 py-1 bg-slate-800/90 text-slate-300 text-xs rounded-lg border border-slate-700/80">GCP
-                                Cloud Run</span>
-                            <span
-                                class="px-3 py-1 bg-slate-800/90 text-slate-300 text-xs rounded-lg border border-slate-700/80">UI/UX
-                                Dashboard</span>
+                            <div class="flex flex-wrap gap-2 pt-2">
+                                <span
+                                    class="px-3 py-1 bg-slate-800/90 text-slate-300 text-xs rounded-lg border border-slate-700/80">Python
+                                    (PyTorch)</span>
+                                <span
+                                    class="px-3 py-1 bg-slate-800/90 text-slate-300 text-xs rounded-lg border border-slate-700/80">YOLOv8
+                                    Vision Model</span>
+                                <span
+                                    class="px-3 py-1 bg-slate-800/90 text-slate-300 text-xs rounded-lg border border-slate-700/80">Firebase
+                                    / Firestore</span>
+                                <span
+                                    class="px-3 py-1 bg-slate-800/90 text-slate-300 text-xs rounded-lg border border-slate-700/80">GCP
+                                    Cloud Run</span>
+                                <span
+                                    class="px-3 py-1 bg-slate-800/90 text-slate-300 text-xs rounded-lg border border-slate-700/80">UI/UX
+                                    Dashboard</span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Project 2: Trello Enterprise Toolkit -->
+                    <!-- Project 2: Trello Enterprise Toolkit -->
+
+                    <div
+                        class="lg:col-span-2 bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80 hover:shadow-md transition-all group">
+                        <div class="flex flex-col md:flex-row gap-6">
+                            <!-- Left: Content -->
+                            <div class="flex-1 space-y-4">
+                                <div class="flex items-center justify-between">
+                                    <span
+                                        class="px-3 py-1 bg-blue-50 text-blue-700 text-xs font-bold rounded-lg border border-blue-200/60">IT
+                                        成本優化 ｜ API 自動化</span>
+                                    <i data-lucide="settings"
+                                        class="w-5 h-5 text-slate-400 group-hover:rotate-45 transition-transform"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-slate-900">Trello Enterprise Toolkit</h3>
+                                <p class="text-xs font-mono text-slate-500">Atlassian Trello Enterprise Seat Optimization Script</p>
+                                <p class="text-slate-600 text-sm leading-relaxed">
+                                    針對大型企業 Trello Enterprise 授權費用高昂且帳號管理不易之痛點，透過 Atlassian API 批量提取解析用戶數據，運用 Vibe Coding 自行設計 Pipeline ，達成帳號權限降級（Member → Guest）時仍完整保留原資料（Boards、Cards）。
+                                </p>
+                                <div
+                                    class="bg-slate-50 p-4 rounded-2xl border border-slate-200/60 text-xs text-slate-700 space-y-1.5 font-mono">
+                                    <p class="font-bold text-slate-900">⚡ 商業效益：</p>
+                                    <p>• 成功降轉 <strong class="text-red-600">25% 閒置企業席次</strong> 與多看板異常帳號</p>
+                                    <p>• 產出數據報表，支持與原廠續約談判降轉，大幅優化年度 IT 預算</p>
+                                </div>
+                            </div>
+                            <!-- Right: Image -->
+                            <div class="md:w-80 shrink-0 flex flex-col justify-between">
+                                <div class="overflow-hidden rounded-2xl border border-slate-200/80 bg-slate-50">
+                                    <img src="images/trello-toolkit.png" alt="Trello Enterprise Toolkit"
+                                        class="w-full h-48 md:h-52 object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                                </div>
+                                <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between">
+                                    <div class="flex gap-1.5">
+                                        <span class="px-2.5 py-1 bg-slate-100 text-slate-600 text-xs rounded-md font-mono">Python</span>
+                                        <span class="px-2.5 py-1 bg-slate-100 text-slate-600 text-xs rounded-md font-mono">REST API</span>
+                                        <span class="px-2.5 py-1 bg-slate-100 text-slate-600 text-xs rounded-md font-mono">JSON ETL</span>
+                                    </div>
+                                    <a href="https://github.com/catseyehuang/trello-toolkit-ai/" target="_blank"
+                                        class="text-xs font-semibold text-brand-600 hover:text-brand-700 flex items-center gap-1">
+                                        <span>GitHub &#8599;</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3: AI 筆記助理 -->
+                    <div
+                        class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80 flex flex-col justify-between hover:shadow-md transition-all group">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span
+                                    class="px-3 py-1 bg-brand-50 text-brand-700 text-xs font-bold rounded-lg border border-brand-200/60">AI
+                                    應用 ｜ 語音轉譯</span>
+                                <i data-lucide="mic"
+                                    class="w-5 h-5 text-slate-400 group-hover:scale-110 transition-transform"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900">AI 筆記助理</h3>
+                            <p class="text-xs font-mono text-slate-500">AI Voice Note Transcriber & Summarizer</p>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                運用生成式 AI 語音識別與內容生成技術開發的效率助理。能將錄音或語音檔案自動轉為精確逐字稿，並一鍵提煉結構化會議摘要與待辦事項。
+                            </p>
+                        </div>
+                        <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between">
+                            <div class="flex flex-wrap gap-1.5">
+                                <span
+                                    class="px-2.5 py-1 bg-slate-100 text-slate-600 text-xs rounded-md font-mono">Whisper
+                                    API</span>
+                                <span
+                                    class="px-2.5 py-1 bg-slate-100 text-slate-600 text-xs rounded-md font-mono">Gemini
+                                    API</span>
+                            </div>
+                            <a href="https://github.com/catseyehuang/trello-toolkit-ai/" target="_blank"
+                                class="text-xs font-semibold text-brand-600 hover:text-brand-700 flex items-center gap-1">
+                                <span>GitHub &#8599;</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project 4: 兒童成長相簿備份與人臉辨識助手 -->
+                    <div
+                        class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80 flex flex-col justify-between hover:shadow-md transition-all group">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span
+                                    class="px-3 py-1 bg-blue-50 text-blue-700 text-xs font-bold rounded-lg border border-blue-200/60">人臉辨識
+                                    ｜ 雲端備份</span>
+                                <i data-lucide="smile"
+                                    class="w-5 h-5 text-slate-400 group-hover:scale-110 transition-transform"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900">兒童成長相簿備份與人臉辨識助手</h3>
+                            <p class="text-xs font-mono text-slate-500">JimPhoto-Archive</p>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                JimPhoto-Archive 是結合 AI 人臉辨識與 Google Drive API 的相片備份系統。可從雲端自動識別特定孩子並一鍵下載。後端使用
+                                Node.js，辨識引擎採用 Python (face_recognition / dlib)，支援離線快速檢視。
+                            </p>
+                        </div>
+                        <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between">
+                            <div class="flex flex-wrap gap-1.5">
+                                <span
+                                    class="px-2.5 py-1 bg-slate-100 text-slate-600 text-xs rounded-md font-mono">Python
+                                    (face_recognition)</span>
+                                <span
+                                    class="px-2.5 py-1 bg-slate-100 text-slate-600 text-xs rounded-md font-mono">Node.js</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-600 text-xs rounded-md font-mono">Drive
+                                    API</span>
+                            </div>
+                            <a href="https://github.com/catseyehuang/JimPhoto-Archive" target="_blank"
+                                class="text-xs font-semibold text-brand-600 hover:text-brand-700 flex items-center gap-1">
+                                <span>GitHub &#8599;</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project 5: ClassDojo 歷史紀錄存檔檢視器 -->
+                    <div
+                        class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80 flex flex-col justify-between hover:shadow-md transition-all group">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span
+                                    class="px-3 py-1 bg-emerald-50 text-emerald-700 text-xs font-bold rounded-lg border border-emerald-200/60">學習紀錄
+                                    ｜ AI 智慧歸納</span>
+                                <i data-lucide="archive"
+                                    class="w-5 h-5 text-slate-400 group-hover:scale-110 transition-transform"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900">ClassDojo 歷史紀錄存檔檢視器</h3>
+                            <p class="text-xs font-mono text-slate-500">ClassDojo-Archive</p>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                ClassDojo-Archive 是基於 AI 人臉辨識與 Google Drive API 的相片備份管理系統。主要用於從學校的 Google Drive
+                                雲端共用相簿中，快速識別並下載特定孩子（主角）的照片與影片，為家長留存成長紀念。技術採用 React+Vite 且支援 Google Drive 雲端同步與多重篩選檢索。整合
+                                Gemini API 一鍵智慧歸納貼文重點與待辦清單。
+                            </p>
+                        </div>
+                        <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between">
+                            <div class="flex flex-wrap gap-1.5">
+                                <span
+                                    class="px-2.5 py-1 bg-slate-100 text-slate-600 text-xs rounded-md font-mono">React+Vite</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-600 text-xs rounded-md font-mono">Drive
+                                    API</span>
+                                <span
+                                    class="px-2.5 py-1 bg-slate-100 text-slate-600 text-xs rounded-md font-mono">Gemini
+                                    API</span>
+                            </div>
+                            <a href="https://github.com/catseyehuang/classdojo-archive" target="_blank"
+                                class="text-xs font-semibold text-brand-600 hover:text-brand-700 flex items-center gap-1">
+                                <span>GitHub &#8599;</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project 6: MyView Helper -->
+                    <div
+                        class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80 flex flex-col justify-between hover:shadow-md transition-all group">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span
+                                    class="px-3 py-1 bg-amber-50 text-amber-700 text-xs font-bold rounded-lg border border-amber-200/60">英語學習
+                                    ｜ Serverless</span>
+                                <i data-lucide="help-circle"
+                                    class="w-5 h-5 text-slate-400 group-hover:scale-110 transition-transform"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900">MyView Helper</h3>
+                            <p class="text-xs font-mono text-slate-500">Myview_helper</p>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                MyView Helper 是一款兒童英語學習的 Serverless 網頁應用。提供課文雙語朗讀、字彙卡與測驗。技術採用 HTML5 與 Web Speech API
+                                實現調速語音合成，後端以 GAS 與 Drive API 進行 JSON 管理並實作分塊快取優化。
+                            </p>
+                        </div>
+                        <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between">
+                            <div class="flex flex-wrap gap-1.5">
+                                <span
+                                    class="px-2.5 py-1 bg-slate-100 text-slate-600 text-xs rounded-md font-mono">GAS</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-600 text-xs rounded-md font-mono">Drive
+                                    API</span>
+                                <span
+                                    class="px-2.5 py-1 bg-slate-100 text-slate-600 text-xs rounded-md font-mono">HTML5</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-600 text-xs rounded-md font-mono">Web
+                                    Speech API</span>
+                            </div>
+                            <a href="https://github.com/catseyehuang/myview_helper" target="_blank"
+                                class="text-xs font-semibold text-brand-600 hover:text-brand-700 flex items-center gap-1">
+                                <span>GitHub &#8599;</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- ==================== SECTION 4: CREDENTIALS & EDUCATION ==================== -->
+            <section id="section-credentials" class="hidden animate-fade-in space-y-6">
+
+                <!-- Section Header (Dark Theme) -->
                 <div
-                    class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80 flex flex-col justify-between hover:shadow-md transition-all group">
-                    <div class="space-y-4">
-                        <div class="overflow-hidden rounded-2xl border border-slate-200/80 bg-slate-50">
-                            <img src="images/trello-toolkit.png" alt="Trello Enterprise Toolkit"
-                                class="w-full h-48 sm:h-52 object-cover object-top group-hover:scale-105 transition-transform duration-500">
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span
-                                class="px-3 py-1 bg-blue-50 text-blue-700 text-xs font-bold rounded-lg border border-blue-200/60">IT
-                                成本優化 ｜ API 自動化</span>
-                            <i data-lucide="settings"
-                                class="w-5 h-5 text-slate-400 group-hover:rotate-45 transition-transform"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900">Trello Enterprise Toolkit</h3>
-                        <p class="text-xs font-mono text-slate-500">Atlassian SaaS Enterprise Seat Optimization Script
+                    class="bg-gradient-to-r from-slate-900 to-slate-850 rounded-3xl p-6 sm:p-8 text-white shadow-xl border border-slate-800 relative overflow-hidden">
+                    <div class="max-w-3xl">
+                        <h2
+                            class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight flex items-center gap-3">
+                            <i data-lucide="award" class="w-7 h-7 text-brand-500"></i>
+                            <span>專業資格認證 &amp; 學歷背景</span>
+                        </h2>
+                        <p class="text-slate-300 text-sm mt-2 leading-relaxed">
+                            結合紮實的資訊工程雙學位背景，以及近年持續投入的 AI 數據分析專業職訓與 Google 國際認證，打造與時俱進的專業壁壘。
                         </p>
-                        <p class="text-slate-600 text-sm leading-relaxed">
-                            針對大型企業 Trello Enterprise 授權費用高昂且帳號管理不易之痛點，開發自動化 Python 腳本，透過 Atlassian API 批量提取並解析龐大用戶數據。
-                        </p>
-                        <div
-                            class="bg-slate-50 p-4 rounded-2xl border border-slate-200/60 text-xs text-slate-700 space-y-1.5 font-mono">
-                            <p class="font-bold text-slate-900">⚡ 商業實質效益：</p>
-                            <p>• 成功識別出 <strong class="text-red-600">15% 閒置企業席次</strong> 與多看板異常帳號</p>
-                            <p>• 產出可行動化數據報表，直接支持與原廠續約談判降轉，大幅優化年度 IT 預算</p>
-                        </div>
-                    </div>
-                    <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between">
-                        <div class="flex gap-1.5">
-                            <span
-                                class="px-2.5 py-1 bg-slate-100 text-slate-600 text-xs rounded-md font-mono">Python</span>
-                            <span class="px-2.5 py-1 bg-slate-100 text-slate-600 text-xs rounded-md font-mono">REST
-                                API</span>
-                            <span class="px-2.5 py-1 bg-slate-100 text-slate-600 text-xs rounded-md font-mono">JSON
-                                ETL</span>
-                        </div>
-                        <a href="https://github.com/catseyehuang" target="_blank"
-                            class="text-xs font-semibold text-brand-600 hover:text-brand-700 flex items-center gap-1">
-                            <span>GitHub &#8599;</span>
-                        </a>
                     </div>
                 </div>
 
-                <!-- Project 3: MyView Helper -->
-                <div
-                    class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80 flex flex-col justify-between hover:shadow-md transition-all group">
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-between">
-                            <span
-                                class="px-3 py-1 bg-amber-50 text-amber-700 text-xs font-bold rounded-lg border border-amber-200/60">AI
-                                輔助工作流 ｜ Python</span>
-                            <i data-lucide="bot"
-                                class="w-5 h-5 text-slate-400 group-hover:scale-110 transition-transform"></i>
+                <!-- Credentials Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+                    <!-- Cert 2: Vocational Training AI -->
+                    <div
+                        class="bg-white rounded-3xl p-6 sm:p-7 shadow-sm border border-slate-200/80 flex flex-col justify-between group hover:border-brand-500/40 transition-all">
+                        <div class="space-y-4">
+                            <div
+                                class="w-12 h-12 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center text-2xl border border-brand-200">
+                                🎓
+                            </div>
+                            <div>
+                                <span
+                                    class="text-[11px] font-mono tracking-wider text-brand-600 uppercase">職訓局專業職能進修（400
+                                    小時）</span>
+                                <h3 class="text-xl font-bold text-slate-900 mt-1">數據分析暨機器學習應用班</h3>
+                                <p class="text-xs text-slate-500 mt-0.5">艾鍗學院 － 專業軟韌體開發訓練中心</p>
+                            </div>
+                            <div
+                                class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-xs text-slate-700 space-y-1">
+                                <p class="font-bold text-slate-900">• 期間：2026/05 – 2026/07 完訓</p>
+                                <p>• 系統化學習數據 ETL / EDA 流程與機器學習模型訓練與驗證方法</p>
+                                <p>• 結訓代表專題：「車況之眼」智慧視覺巡檢系統</p>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-bold text-slate-900">MyView Helper</h3>
-                        <p class="text-xs font-mono text-slate-500">AI-Assisted Operational Efficiency Tool</p>
-                        <p class="text-slate-600 text-sm leading-relaxed">
-                            運用 Vibe Coding 模式開發的 AI 輔助腳本工具，專門用於簡化與自動化特定日常業務工作流程。展現善用現代 API 串接與腳本編程，極大化作業效率的能力。
-                        </p>
                         <div
-                            class="bg-slate-50 p-4 rounded-2xl border border-slate-200/60 text-xs text-slate-700 space-y-1.5 font-mono">
-                            <p class="font-bold text-slate-900">⚡ 工具特色：</p>
-                            <p>• 整合第三方 API 進行數據撈取與清洗</p>
-                            <p>• 將繁瑣重複的手動行政作業自動化，節省 50%+ 處理時間</p>
+                            class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400 font-medium">
+                            <span>實戰總時數：400 hr</span>
+                            <span class="text-emerald-600 font-bold flex items-center gap-1"><i
+                                    data-lucide="check-circle" class="w-3.5 h-3.5"></i> 已順利結訓</span>
                         </div>
                     </div>
-                    <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between">
-                        <div class="flex gap-1.5">
-                            <span
-                                class="px-2.5 py-1 bg-slate-100 text-slate-600 text-xs rounded-md font-mono">Python</span>
-                            <span class="px-2.5 py-1 bg-slate-100 text-slate-600 text-xs rounded-md font-mono">API
-                                串接</span>
-                            <span
-                                class="px-2.5 py-1 bg-slate-100 text-slate-600 text-xs rounded-md font-mono">AI-Assisted</span>
+                    <!-- Cert 1: Gemini Certified Educator -->
+                    <div
+                        class="bg-white rounded-3xl p-6 sm:p-7 shadow-sm border border-slate-200/80 flex flex-col justify-between group hover:border-brand-500/40 transition-all">
+                        <div
+                            class="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl pointer-events-none">
                         </div>
-                        <a href="https://github.com/catseyehuang/myview_helper" target="_blank"
-                            class="text-xs font-semibold text-brand-600 hover:text-brand-700 flex items-center gap-1">
-                            <span>GitHub &#8599;</span>
-                        </a>
+                        <div class="space-y-4 relative z-10">
+                            <div
+                                class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-2xl border border-amber-500/30">
+                                🏆
+                            </div>
+                            <div>
+                                <span class="text-[11px] font-mono tracking-wider text-brand-600 uppercase">Google
+                                    International Certification</span>
+                                <h3 class="text-xl font-bold text-slate-900 mt-1">Gemini Certified Educator</h3>
+                                <p class="text-xs text-slate-400 mt-0.5">Google for Education</p>
+                            </div>
+                            <div
+                                class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-xs text-slate-700 space-y-1">
+                                <p>• 認證效期：2026/03 – 2029/03</p>
+                                <p>• 具備應用 Google Gemini 生成式 AI 優化作業流程與教學架構之官方認證</p>
+                            </div>
+                        </div>
+                        <div class="pt-6 mt-6 border-t border-slate-800 relative z-10">
+                            <a href="https://edu.google.accredible.com/7c482414-c73c-41a5-973b-68f079f4b4fa#acc.bWelYtGi"
+                                target="_blank"
+                                class="w-full bg-brand-500 hover:bg-brand-600 text-white py-2.5 px-4 rounded-xl text-xs font-semibold transition-all flex items-center justify-center gap-2 shadow-md shadow-brand-500/20">
+                                <span>查看線上官方徽章</span>
+                                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                            </a>
+                        </div>
+                    </div>
+
+
+
+                    <!-- Cert 3: TOEIC English -->
+                    <div
+                        class="bg-white rounded-3xl p-6 sm:p-7 shadow-sm border border-slate-200/80 flex flex-col justify-between group hover:border-brand-500/40 transition-all">
+                        <div class="space-y-4">
+                            <div
+                                class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-2xl border border-blue-200">
+                                🌐
+                            </div>
+                            <div>
+                                <span
+                                    class="text-[11px] font-mono tracking-wider text-blue-600 uppercase">語言與溝通能力</span>
+                                <h3 class="text-xl font-bold text-slate-900 mt-1">TOEIC 多益英語測驗 670</h3>
+                                <p class="text-xs text-slate-500 mt-0.5">ETS 美國教育測驗服務社</p>
+                            </div>
+                            <div
+                                class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-xs text-slate-700 space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <span class="font-medium">中文 (Mandarin)：</span>
+                                    <span class="font-bold text-slate-900 bg-slate-200 px-2 py-0.5 rounded">母語精通</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="font-medium">英文 (English)：</span>
+                                    <span class="font-bold text-blue-700 bg-blue-100 px-2 py-0.5 rounded">專業工作能力
+                                        (讀寫精通)</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="font-medium">台語 (Taiwanese)：</span>
+                                    <span class="font-bold text-slate-700 bg-slate-200 px-2 py-0.5 rounded">日常中等</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-6 mt-6 border-t border-slate-100 text-xs text-slate-500 leading-relaxed">
+                            具備 HTC 期間長達 7 年以上對接海外事業部與外商供應商（Atlassian / Microsoft）之合約與技術溝通經驗。
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Education Background Box -->
+                <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80">
+                    <h3 class="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
+                        <i data-lucide="graduation-cap" class="w-5 h-5 text-brand-500"></i>
+                        <span>學歷背景 ｜ 中國文化大學 (Chinese Culture University)</span>
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-start gap-4">
+                            <div
+                                class="w-10 h-10 rounded-xl bg-brand-500 text-white flex items-center justify-center font-bold text-lg shrink-0">
+                                BS
+                            </div>
+                            <div>
+                                <h4 class="text-base font-bold text-slate-900">資訊工程學系 學士</h4>
+                                <p class="text-xs text-brand-600 font-semibold mt-0.5">BS in Computer Science</p>
+                                <p class="text-xs text-slate-500 mt-2">2003/09 – 2008/06 畢業</p>
+                                <p class="text-xs text-slate-600 mt-2 leading-relaxed">奠定系統底層運作邏輯、資料結構、演算法與軟體工程開發標準訓練。
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-start gap-4">
+                            <div
+                                class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold text-lg shrink-0">
+                                BA
+                            </div>
+                            <div>
+                                <h4 class="text-base font-bold text-slate-900">資訊傳播學系 學士（雙主修）</h4>
+                                <p class="text-xs text-amber-600 font-semibold mt-0.5">BA in Information Communication
+                                    (Double Major)</p>
+                                <p class="text-xs text-slate-500 mt-2">2003/09 – 2008/06 畢業</p>
+                                <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                                    結合數位媒體傳播、使用者介面設計（UI/UX）與行銷心理學，培養敏銳的數位產品感受力。</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Project 4: MyView Quiz -->
-                <div
-                    class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80 flex flex-col justify-between hover:shadow-md transition-all group">
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-between">
-                            <span
-                                class="px-3 py-1 bg-purple-50 text-purple-700 text-xs font-bold rounded-lg border border-purple-200/60">互動
-                                Web App ｜ JavaScript</span>
-                            <i data-lucide="help-circle"
-                                class="w-5 h-5 text-slate-400 group-hover:scale-110 transition-transform"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900">MyView Online Quiz</h3>
-                        <p class="text-xs font-mono text-slate-500">Interactive Web Assessment Application</p>
-                        <p class="text-slate-600 text-sm leading-relaxed">
-                            透過 Vibe Coding 開發的線上互動測驗與評量應用程式。展示俐落的前端邏輯實作、狀態管理以及直覺流暢的使用者介面設計（UI/UX）。
-                        </p>
-                        <div
-                            class="bg-slate-50 p-4 rounded-2xl border border-slate-200/60 text-xs text-slate-700 space-y-1.5 font-mono">
-                            <p class="font-bold text-slate-900">⚡ 系統特點：</p>
-                            <p>• 響應式前端操作介面與即時計分邏輯</p>
-                            <p>• 具備良好教育與內部評測場景適應性</p>
+            </section>
+
+        </main>
+    </div><!-- End print-hidden-wrapper -->
+
+    <!-- PRINT TEMPLATE -->
+    <div id="print-cv-container"
+        class="hidden print:block w-[210mm] mx-auto text-slate-900 bg-white font-sans text-xs leading-relaxed">
+        <!-- PAGE 1 -->
+        <div class="w-[210mm] h-[297mm] p-[15mm] flex flex-col justify-between box-border bg-white page-break">
+            <div class="space-y-4">
+                <!-- Header -->
+                <div class="flex justify-between items-start">
+                    <div class="flex items-center gap-4">
+                        <img src="images/profile.png" alt="黃巧希"
+                            class="w-20 h-20 rounded-full object-cover border border-slate-200">
+                        <div>
+                            <h1 class="text-2xl font-bold text-[#c26142]">黃巧希 <span
+                                    class="text-xl font-normal text-slate-700">Joanna Huang</span></h1>
+                            <p class="text-sm font-semibold text-slate-800 mt-1">希望職稱：PM ／ SA ／ 數據分析</p>
+                            <p class="text-xs text-slate-500 mt-0.5">41歲 ｜ 新北市 ｜ 待業中（隨時到職）</p>
+                            <p class="text-xs text-slate-500">joannahep@gmail.com</p>
                         </div>
                     </div>
-                    <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between">
-                        <div class="flex gap-1.5">
-                            <span
-                                class="px-2.5 py-1 bg-slate-100 text-slate-600 text-xs rounded-md font-mono">JavaScript</span>
-                            <span
-                                class="px-2.5 py-1 bg-slate-100 text-slate-600 text-xs rounded-md font-mono">HTML/CSS</span>
-                            <span
-                                class="px-2.5 py-1 bg-slate-100 text-slate-600 text-xs rounded-md font-mono">SPA</span>
-                        </div>
-                        <a href="https://github.com/catseyehuang/myview_quiz" target="_blank"
-                            class="text-xs font-semibold text-brand-600 hover:text-brand-700 flex items-center gap-1">
-                            <span>GitHub &#8599;</span>
-                        </a>
+                    <div class="text-center">
+                        <img src="images/qr-code.png" alt="QR Code" class="w-16 h-16 mx-auto object-contain">
+                        <p class="text-[10px] text-slate-500 mt-1 font-semibold">MyCV Website</p>
                     </div>
                 </div>
 
-                <!-- Project 5: AI 筆記助理 -->
-                <div
-                    class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80 flex flex-col justify-between hover:shadow-md transition-all group">
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-between">
-                            <span
-                                class="px-3 py-1 bg-brand-50 text-brand-700 text-xs font-bold rounded-lg border border-brand-200/60">AI
-                                應用 ｜ 語音轉譯</span>
-                            <i data-lucide="mic"
-                                class="w-5 h-5 text-slate-400 group-hover:scale-110 transition-transform"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900">AI 筆記助理</h3>
-                        <p class="text-xs font-mono text-slate-500">AI Voice Note Transcriber & Summarizer</p>
-                        <p class="text-slate-600 text-sm leading-relaxed">
-                            運用生成式 AI 語音識別與內容生成技術開發的效率助理。能將錄音或語音檔案自動轉為精確逐字稿，並一鍵提煉結構化會議摘要與待辦事項。
-                        </p>
-                        <div
-                            class="bg-slate-50 p-4 rounded-2xl border border-slate-200/60 text-xs text-slate-700 space-y-1.5 font-mono">
-                            <p class="font-bold text-slate-900">⚡ 功能亮點：</p>
-                            <p>• 串接先進語音辨識 API，實現高精度多國語言轉譯</p>
-                            <p>• 整合大型語言模型，自動產出邏輯清晰的重點摘要</p>
-                        </div>
-                    </div>
-                    <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between">
-                        <div class="flex gap-1.5">
-                            <span
-                                class="px-2.5 py-1 bg-slate-100 text-slate-600 text-xs rounded-md font-mono">Python</span>
-                            <span class="px-2.5 py-1 bg-slate-100 text-slate-600 text-xs rounded-md font-mono">Whisper
-                                API</span>
-                            <span class="px-2.5 py-1 bg-slate-100 text-slate-600 text-xs rounded-md font-mono">GPT
-                                API</span>
-                        </div>
-                        <a href="https://github.com/catseyehuang/ai-note-transcriber" target="_blank"
-                            class="text-xs font-semibold text-brand-600 hover:text-brand-700 flex items-center gap-1">
-                            <span>GitHub &#8599;</span>
-                        </a>
-                    </div>
-                </div>
+                <hr class="border-slate-200">
 
-                <!-- Project 6: ClassDojo Archive Viewer -->
-                <div
-                    class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80 flex flex-col justify-between hover:shadow-md transition-all group">
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-between">
-                            <span
-                                class="px-3 py-1 bg-emerald-50 text-emerald-700 text-xs font-bold rounded-lg border border-emerald-200/60">資料工具
-                                ｜ 備份檢視</span>
-                            <i data-lucide="archive"
-                                class="w-5 h-5 text-slate-400 group-hover:scale-110 transition-transform"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900">ClassDojo Archive Viewer</h3>
-                        <p class="text-xs font-mono text-slate-500">ClassDojo Local Export Data Visualizer</p>
-                        <p class="text-slate-600 text-sm leading-relaxed">
-                            針對家長與教育工作者設計的 ClassDojo 歷史封存數據本機檢視器，方便直覺性瀏覽、搜尋與整理匯出的班級學習軌跡與照片記錄。
-                        </p>
-                        <div
-                            class="bg-slate-50 p-4 rounded-2xl border border-slate-200/60 text-xs text-slate-700 space-y-1.5 font-mono">
-                            <p class="font-bold text-slate-900">⚡ 工具特色：</p>
-                            <p>• 本機快速解析匯出的 JSON/ZIP 封存封包</p>
-                            <p>• 重建直覺好讀的網頁版 UI 介面，方便家長典藏與快速檢索</p>
-                        </div>
-                    </div>
-                    <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between">
-                        <div class="flex gap-1.5">
-                            <span
-                                class="px-2.5 py-1 bg-slate-100 text-slate-600 text-xs rounded-md font-mono">HTML/JS</span>
-                            <span class="px-2.5 py-1 bg-slate-100 text-slate-600 text-xs rounded-md font-mono">JSON
-                                Parser</span>
-                            <span class="px-2.5 py-1 bg-slate-100 text-slate-600 text-xs rounded-md font-mono">Local
-                                Utility</span>
-                        </div>
-                        <a href="https://github.com/catseyehuang/classdojo-archive" target="_blank"
-                            class="text-xs font-semibold text-brand-600 hover:text-brand-700 flex items-center gap-1">
-                            <span>GitHub &#8599;</span>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- ==================== SECTION 4: CREDENTIALS & EDUCATION ==================== -->
-        <section id="section-credentials" class="hidden animate-fade-in space-y-6">
-
-            <!-- Section Header (Dark Theme) -->
-            <div
-                class="bg-gradient-to-r from-slate-900 to-slate-850 rounded-3xl p-6 sm:p-8 text-white shadow-xl border border-slate-800 relative overflow-hidden">
-                <div class="max-w-3xl">
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight flex items-center gap-3">
-                        <i data-lucide="award" class="w-7 h-7 text-brand-500"></i>
-                        <span>專業資格認證 &amp; 學歷背景</span>
-                    </h2>
-                    <p class="text-slate-300 text-sm mt-2 leading-relaxed">
-                        結合紮實的資訊工程雙學位背景，以及近年持續投入的 AI 數據分析專業職訓與 Google 國際認證，打造與時俱進的專業壁壘。
+                <!-- Summary & Advantage -->
+                <div class="space-y-3">
+                    <p class="text-[11px] text-slate-700 leading-relaxed font-medium">
+                        化繁為簡的系統整合者 — 擁有 15+ 年跨職能實戰資歷，專精 <span class="font-bold text-slate-900">SaaS
+                            系統治理、數據分析、數位行銷與網站企劃行銷專案</span>。完成職訓局 400 小時「數據分析暨機器學習應用班」，並主導「車況之眼 :智慧視覺巡檢系統」專題。
                     </p>
-                </div>
-            </div>
-
-            <!-- Credentials Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-
-                <!-- Cert 1: Gemini Certified Educator -->
-                <div
-                    class="bg-white rounded-3xl p-6 sm:p-7 shadow-sm border border-slate-200/80 flex flex-col justify-between group hover:border-brand-500/40 transition-all">
-                    <div
-                        class="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl pointer-events-none">
-                    </div>
-                    <div class="space-y-4 relative z-10">
-                        <div
-                            class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-2xl border border-amber-500/30">
-                            🏆
+                    <div class="grid grid-cols-1 gap-2">
+                        <div class="bg-[#f8fafc] border border-slate-100 p-2.5 rounded-xl text-[11px]">
+                            <span class="font-bold text-[#c26142]">▪ 核心優勢：</span>同時看懂「系統串接架構」、「商業需求 Business
+                            Requirement」與「數據驅動 Data Driven」，是 AI 產品從概念走向商業落地最強的跨界橋樑
                         </div>
-                        <div>
-                            <span class="text-[11px] font-mono tracking-wider text-brand-600 uppercase">Google
-                                International Certification</span>
-                            <h3 class="text-xl font-bold text-slate-900 mt-1">Gemini Certified Educator</h3>
-                            <p class="text-xs text-slate-400 mt-0.5">Google for Education</p>
+                        <div class="bg-[#f8fafc] border border-slate-100 p-2.5 rounded-xl text-[11px]">
+                            <span class="font-bold text-[#c26142]">▪ 管理實戰：</span>具備帶領
+                            IT、Engineer、行銷業務與外包廠商協作交付經驗，善於在預算限制下進行供應商談判與資源優化
                         </div>
-                        <div
-                            class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-xs text-slate-700 space-y-1">
-                            <p>• 認證效期：2026/03 – 2029/03</p>
-                            <p>• 具備應用 Google Gemini 生成式 AI 優化作業流程與教學架構之官方認證</p>
-                        </div>
-                    </div>
-                    <div class="pt-6 mt-6 border-t border-slate-800 relative z-10">
-                        <a href="https://edu.google.accredible.com/7c482414-c73c-41a5-973b-68f079f4b4fa#acc.bWelYtGi"
-                            target="_blank"
-                            class="w-full bg-brand-500 hover:bg-brand-600 text-white py-2.5 px-4 rounded-xl text-xs font-semibold transition-all flex items-center justify-center gap-2 shadow-md shadow-brand-500/20">
-                            <span>查看線上官方徽章</span>
-                            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-                        </a>
                     </div>
                 </div>
 
-                <!-- Cert 2: Vocational Training AI -->
-                <div
-                    class="bg-white rounded-3xl p-6 sm:p-7 shadow-sm border border-slate-200/80 flex flex-col justify-between group hover:border-brand-500/40 transition-all">
+                <!-- Tags -->
+                <div class="flex flex-wrap gap-1.5 pt-1">
+                    <span class="px-2 py-0.5 bg-[#f1f5f9] text-[#334155] rounded text-[10px] font-medium">SaaS
+                        Subscription</span>
+                    <span class="px-2 py-0.5 bg-[#f1f5f9] text-[#334155] rounded text-[10px] font-medium">Power
+                        BI</span>
+                    <span class="px-2 py-0.5 bg-[#f1f5f9] text-[#334155] rounded text-[10px] font-medium">Media
+                        Buyer</span>
+                    <span class="px-2 py-0.5 bg-[#f1f5f9] text-[#334155] rounded text-[10px] font-medium">系統架構規劃</span>
+                    <span class="px-2 py-0.5 bg-[#f1f5f9] text-[#334155] rounded text-[10px] font-medium">合約審查</span>
+                    <span class="px-2 py-0.5 bg-[#f1f5f9] text-[#334155] rounded text-[10px] font-medium">續約談判</span>
+                    <span class="px-2 py-0.5 bg-[#f1f5f9] text-[#334155] rounded text-[10px] font-medium">數據資料ETL</span>
+                </div>
+
+                <!-- Section: Experience -->
+                <div class="pt-2">
+                    <h2
+                        class="text-sm font-bold text-slate-900 border-b border-slate-300 pb-1 mb-3 flex items-center gap-2">
+                        <span
+                            class="w-5 h-5 bg-[#c26142] text-white rounded-full flex items-center justify-center text-[10px]">1</span>
+                        <span>工作經歷 Experience</span>
+                    </h2>
+
                     <div class="space-y-4">
-                        <div
-                            class="w-12 h-12 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center text-2xl border border-brand-200">
-                            🎓
-                        </div>
+                        <!-- HTC -->
                         <div>
-                            <span class="text-[11px] font-mono tracking-wider text-brand-600 uppercase">職訓局專業職能進修（400
-                                小時）</span>
-                            <h3 class="text-xl font-bold text-slate-900 mt-1">數據分析暨機器學習應用班</h3>
-                            <p class="text-xs text-slate-500 mt-0.5">艾鍗學院 － 專業軟韌體開發訓練中心</p>
+                            <div class="flex justify-between items-baseline font-bold text-slate-800">
+                                <span class="text-xs">HTC 宏達國際電子股份有限公司</span>
+                                <span class="text-[10px] text-[#c26142]">全職 • 8 年 6 個月</span>
+                            </div>
+                            <div class="mt-2 space-y-3 pl-3 border-l border-slate-200">
+                                <!-- Role 1 -->
+                                <div>
+                                    <div
+                                        class="flex justify-between items-baseline text-[11px] font-bold text-slate-700">
+                                        <span>M365 & Subscription Management of IT Cloud</span>
+                                        <span class="font-mono text-slate-500">2024–2025</span>
+                                    </div>
+                                    <ul class="list-disc pl-4 text-[10px] text-slate-600 space-y-0.5 mt-0.5">
+                                        <li>主導全公司 SaaS 授權生命週期管理 ( M365 / Jira / Confluence / Trello），建立標準化續約流程，管理 300+
+                                            帳號、年度預算規模達 NT$100 萬</li>
+                                        <li>設計自動化派發與離職權限回收機制，落實最小權限原則，降低人工操作錯誤率</li>
+                                        <li>建立 Power BI 授權使用率儀表板，供管理層決策依據，優化席次配置</li>
+                                        <li>自主開發 Trello Enterprise Toolkit（Vibe Coding），解決權限降級資料流失痛點（詳見專案）</li>
+                                    </ul>
+                                </div>
+                                <!-- Role 2 -->
+                                <div>
+                                    <div
+                                        class="flex justify-between items-baseline text-[11px] font-bold text-slate-700">
+                                        <span>全球官網內容營運與在地化管理</span>
+                                        <span class="font-mono text-slate-500">2021–2024</span>
+                                    </div>
+                                    <ul class="list-disc pl-4 text-[10px] text-slate-600 space-y-0.5 mt-0.5">
+                                        <li>統籌 htc.com、vive.com 等全球官網之內容上稿、改版與維運</li>
+                                        <li>建立標準化翻譯發布 SOP，管理 6 地區 × 10 語系同步上線</li>
+                                    </ul>
+                                </div>
+                                <!-- Role 3 -->
+                                <div>
+                                    <div
+                                        class="flex justify-between items-baseline text-[11px] font-bold text-slate-700">
+                                        <span>Paid Media 媒體投放與數據分析</span>
+                                        <span class="font-mono text-slate-500">2017–2021</span>
+                                    </div>
+                                    <ul class="list-disc pl-4 text-[10px] text-slate-600 space-y-0.5 mt-0.5">
+                                        <li>Media Buyer：獨立操盤 HTC／VIVE 雙品牌全球廣告投放（Google／Meta／Twitter Ads）</li>
+                                        <li>建立 Power BI 廣告投放儀表板，串接跨平台數據，提供 BU 預算配置建議</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                        <div
-                            class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-xs text-slate-700 space-y-1">
-                            <p class="font-bold text-slate-900">• 期間：2026/05 – 2026/07 完訓</p>
-                            <p>• 系統化學習數據 ETL / EDA 流程與機器學習模型訓練與驗證方法</p>
-                            <p>• 結訓代表專題：「車況之眼」智慧視覺巡檢系統</p>
+
+                        <!-- Promise -->
+                        <div>
+                            <div class="flex justify-between items-baseline font-bold text-slate-800">
+                                <span class="text-xs">Promise Technology 喬鼎資訊股份有限公司</span>
+                                <span class="text-[10px] text-[#c26142]">全職 • 3 年 8 個月</span>
+                            </div>
+                            <div class="mt-1 pl-3 border-l border-slate-200">
+                                <div class="flex justify-between items-baseline text-[11px] font-bold text-slate-700">
+                                    <span>官網營運、系統優化與跨部門溝通</span>
+                                    <span class="font-mono text-slate-500">2013–2016</span>
+                                </div>
+                                <ul class="list-disc pl-4 text-[10px] text-slate-600 space-y-0.5 mt-0.5">
+                                    <li>官網規劃、功能測試與 SEO 優化，使用者體驗（ UI/UX）。跨部門需求整合（ IT / PM）。</li>
+                                    <li>COMPUTEX 2016 展覽統籌。亞太區展覽與行銷活動之規劃、宣傳物料籌備與現場執行。</li>
+                                </ul>
+                            </div>
                         </div>
+
+                        <!-- Early Career -->
+                        <div>
+                            <div class="flex justify-between items-baseline font-bold text-slate-800">
+                                <span class="text-xs">早期職涯：官網建置、 PM 專案管理與行銷溝通</span>
+                                <span class="text-[10px] text-slate-500 font-normal">2008–2012</span>
+                            </div>
+                            <ul class="list-disc pl-7 text-[10px] text-slate-600 space-y-0.5 mt-0.5">
+                                <li>官網規劃／測試／ SEO 優化、Joomla CMS 系統導入</li>
+                                <li>獨立負責 3–4 件客戶網站建置專案 PM／需求分析／UI UX／前端開發</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 1 Footer -->
+            <div class="flex justify-between text-[9px] text-slate-400 border-t border-slate-100 pt-1 mt-4">
+                <span>黃巧希 Joanna Huang CV</span>
+                <span>1 / 2</span>
+            </div>
+        </div>
+
+        <!-- PAGE 2 -->
+        <div class="w-[210mm] h-[297mm] p-[15mm] flex flex-col justify-between box-border bg-white">
+            <div class="space-y-4">
+                <!-- Header -->
+                <div
+                    class="flex justify-between items-baseline border-b border-slate-200 pb-1 text-[10px] text-slate-500">
+                    <span class="font-bold text-slate-700">黃巧希 Joanna Huang ｜ 專案與作品</span>
+                    <span class="text-xs font-extrabold text-slate-900 tracking-tight flex items-center gap-1.5">
+                        <span
+                            class="w-4 h-4 bg-[#c26142] text-white rounded-full flex items-center justify-center text-[9px]">2</span>
+                        <span>專案與作品 Projects</span>
+                    </span>
+                    <span class="font-semibold text-[#c26142]">Github | catseyehuang</span>
+                </div>
+
+                <!-- Recent Masterpiece -->
+                <div class="border border-slate-200 rounded-xl p-3 bg-white space-y-2">
+                    <div class="flex justify-between items-baseline">
+                        <span class="text-xs font-bold text-slate-900">近期代表作：車況之眼：智慧視覺巡檢系統</span>
+                        <span class="text-[9px] text-slate-500 font-mono">AI Car Inspection System | 2026/05–2026/07
+                            職訓局結訓專題</span>
+                    </div>
+                    <p class="text-[10px] text-slate-600 leading-relaxed">
+                        針對租賃車輛交車與歸還痛點，與團隊協同規劃並實作以 YOLOv8 AI 視覺辨識為核心的標準化智慧拍攝與車損辨識系統，完成系統架構規劃、數據 ETL /
+                        EDA、前後端串接與後台儀表板開發，大幅提升檢驗可追溯性並降低爭議。
+                    </p>
+                    <ul class="list-disc pl-4 text-[9.5px] text-slate-600 space-y-0.5">
+                        <li><strong>ETL / EDA</strong>：系統性處理車輛外觀損傷圖片數據集，完成標記標準化與特徵分析</li>
+                        <li><strong>AI Model</strong>：訓練與優化 YOLOv8 視覺辨識模型，精準辨識車體刮痕、凹陷與損毀部位</li>
+                        <li><strong>Integration</strong>：串接 Firebase 雲端資料庫與 GCP 服務，設計具操作性之管理 Dashboard</li>
+                    </ul>
+                    <div class="flex flex-wrap gap-1">
+                        <span class="px-1.5 py-0.5 bg-[#f1f5f9] text-[#334155] rounded text-[9px]">Python
+                            (PyTorch)</span>
+                        <span class="px-1.5 py-0.5 bg-[#f1f5f9] text-[#334155] rounded text-[9px]">YOLOv8</span>
+                        <span class="px-1.5 py-0.5 bg-[#f1f5f9] text-[#334155] rounded text-[9px]">Firebase /
+                            Firestore</span>
+                        <span class="px-1.5 py-0.5 bg-[#f1f5f9] text-[#334155] rounded text-[9px]">GCP Cloud Run</span>
+                        <span class="px-1.5 py-0.5 bg-[#f1f5f9] text-[#334155] rounded text-[9px]">Dashboard</span>
                     </div>
                     <div
-                        class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400 font-medium">
-                        <span>實戰總時數：400 hr</span>
-                        <span class="text-emerald-600 font-bold flex items-center gap-1"><i data-lucide="check-circle"
-                                class="w-3.5 h-3.5"></i> 已順利結訓</span>
+                        class="bg-[#fdf2f2] text-[#9f4c33] border border-[#fca5a5]/30 p-2 rounded-lg text-[10px] font-medium flex items-center gap-1">
+                        <span>⚡ 商業效益：智慧拍攝把照片拍對， AI 車損辨識提供疑似提示， Dashboard 人工複核</span>
                     </div>
                 </div>
 
-                <!-- Cert 3: TOEIC English -->
-                <div
-                    class="bg-white rounded-3xl p-6 sm:p-7 shadow-sm border border-slate-200/80 flex flex-col justify-between group hover:border-brand-500/40 transition-all">
-                    <div class="space-y-4">
-                        <div
-                            class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-2xl border border-blue-200">
-                            🌐
+                <!-- Section Title Banner -->
+                <div class="bg-[#f8fafc] border-l-4 border-[#c26142] p-2 text-[10.5px] font-bold text-slate-800">
+                    善用 Vibe Coding（AI 輔助開發）結合 Python 與 API 串接，獨立解決營運現場的真實痛點
+                </div>
+
+                <!-- Trello Enterprise Toolkit -->
+                <div class="border border-slate-200 rounded-xl p-3 bg-white grid grid-cols-12 gap-3 items-center">
+                    <div class="col-span-8 space-y-1.5">
+                        <h4 class="text-xs font-bold text-slate-900">Trello Enterprise Toolkit <span
+                                class="text-[9px] font-normal text-slate-500 block">Atlassian Trello Enterprise Seat
+                                Optimization Script</span></h4>
+                        <p class="text-[10px] text-slate-600 leading-relaxed">
+                            針對大型企業 Trello 授權費用高昂且帳號管理不易之痛點，透過 Atlassian API 批量提取解析用戶數據，運用 Vibe Coding 自行設計
+                            Pipeline，達成帳號權限降級（Member → Guest）時仍完整保留原資料（Boards、Cards）。
+                        </p>
+                        <div class="flex gap-1.5 pt-1">
+                            <span class="px-1.5 py-0.5 bg-[#f1f5f9] text-[#334155] rounded text-[9px]">Python</span>
+                            <span class="px-1.5 py-0.5 bg-[#f1f5f9] text-[#334155] rounded text-[9px]">REST API</span>
+                            <span class="px-1.5 py-0.5 bg-[#f1f5f9] text-[#334155] rounded text-[9px]">ETL</span>
                         </div>
+                        <div
+                            class="bg-[#fdf2f2] text-[#9f4c33] border border-[#fca5a5]/30 p-1.5 rounded-lg text-[9.5px] font-medium mt-1">
+                            ⚡ 商業效益：成功降轉 25% 閒置企業席次，支持與原廠續約談判，優化年度 IT 預算
+                        </div>
+                    </div>
+                    <div class="col-span-4 flex justify-center">
+                        <img src="images/trello-toolkit.png" alt="Trello Toolkit"
+                            class="max-h-28 rounded border border-slate-200 object-contain">
+                    </div>
+                </div>
+
+                <!-- 2x2 Grid for other 4 projects -->
+                <div class="grid grid-cols-2 gap-3">
+                    <!-- AI 筆記助理 -->
+                    <div
+                        class="border border-slate-200 rounded-xl p-2.5 space-y-1 bg-white flex flex-col justify-between">
                         <div>
-                            <span class="text-[11px] font-mono tracking-wider text-blue-600 uppercase">語言與溝通能力</span>
-                            <h3 class="text-xl font-bold text-slate-900 mt-1">TOEIC 多益英語測驗 670</h3>
-                            <p class="text-xs text-slate-500 mt-0.5">ETS 美國教育測驗服務社</p>
+                            <div class="flex justify-between items-baseline">
+                                <h4 class="text-[10.5px] font-bold text-slate-900">AI 筆記助理</h4>
+                                <span class="text-[8.5px] text-slate-400 font-mono">Whisper/Gemini API</span>
+                            </div>
+                            <p class="text-[9px] text-slate-600 mt-1 leading-relaxed">
+                                運用生成式 AI 語音識別與內容生成技術開發的效率助理。能將錄音或語音檔案自動轉為精確逐字稿，並一鍵提煉結構化會議摘要與待辦事項。
+                            </p>
                         </div>
-                        <div
-                            class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-xs text-slate-700 space-y-2">
-                            <div class="flex items-center justify-between">
-                                <span class="font-medium">中文 (Mandarin)：</span>
-                                <span class="font-bold text-slate-900 bg-slate-200 px-2 py-0.5 rounded">母語精通</span>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <span class="font-medium">英文 (English)：</span>
-                                <span class="font-bold text-blue-700 bg-blue-100 px-2 py-0.5 rounded">專業工作能力
-                                    (讀寫精通)</span>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <span class="font-medium">台語 (Taiwanese)：</span>
-                                <span class="font-bold text-slate-700 bg-slate-200 px-2 py-0.5 rounded">日常中等</span>
-                            </div>
-                        </div>
+                        <p class="text-[8px] text-slate-400 font-semibold mt-1">AI Voice Note Transcriber & Summarizer
+                        </p>
                     </div>
-                    <div class="pt-6 mt-6 border-t border-slate-100 text-xs text-slate-500 leading-relaxed">
-                        具備 HTC 期間長達 7 年以上對接海外事業部與外商供應商（Atlassian / Microsoft）之合約與技術溝通經驗。
+
+                    <!-- JimPhoto Archive -->
+                    <div
+                        class="border border-slate-200 rounded-xl p-2.5 space-y-1 bg-white flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-baseline">
+                                <h4 class="text-[10.5px] font-bold text-slate-900">兒童成長相簿與人臉辨識</h4>
+                                <span class="text-[8.5px] text-slate-400 font-mono">Python/Node/Drive</span>
+                            </div>
+                            <p class="text-[9px] text-slate-600 mt-1 leading-relaxed">
+                                JimPhoto-Archive 結合 AI 人臉辨識與 Google Drive API 進行相片備份。可從雲端自動識別特定孩子並一鍵下載。辨識引擎採用 Python
+                                dlib/face_recognition。
+                            </p>
+                        </div>
+                        <p class="text-[8px] text-slate-400 font-semibold mt-1">JimPhoto-Archive</p>
+                    </div>
+
+                    <!-- ClassDojo Archive -->
+                    <div
+                        class="border border-slate-200 rounded-xl p-2.5 space-y-1 bg-white flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-baseline">
+                                <h4 class="text-[10.5px] font-bold text-slate-900">ClassDojo 歷史存檔檢視器</h4>
+                                <span class="text-[8.5px] text-slate-400 font-mono">React/Drive/Gemini</span>
+                            </div>
+                            <p class="text-[9px] text-slate-600 mt-1 leading-relaxed">
+                                主要用於從 Google Drive 雲端共用相簿中，快速識別並下載特定孩子的照片與影片，為家長留存成長紀念。整合 Gemini API 一鍵智慧歸納貼文重點與待辦清單。
+                            </p>
+                        </div>
+                        <p class="text-[8px] text-slate-400 font-semibold mt-1">ClassDojo-Archive</p>
+                    </div>
+
+                    <!-- MyView Helper -->
+                    <div
+                        class="border border-slate-200 rounded-xl p-2.5 space-y-1 bg-white flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-baseline">
+                                <h4 class="text-[10.5px] font-bold text-slate-900">MyView Helper</h4>
+                                <span class="text-[8.5px] text-slate-400 font-mono">GAS/Drive/HTML5</span>
+                            </div>
+                            <p class="text-[9px] text-slate-600 mt-1 leading-relaxed">
+                                兒童英語學習的 Serverless 網頁應用。提供課文雙語朗讀、字彙卡與測驗。採用 HTML5 Web Speech API 調速語音合成，GAS 與 Drive API
+                                進行 JSON 管理。
+                            </p>
+                        </div>
+                        <p class="text-[8px] text-slate-400 font-semibold mt-1">Myview_helper</p>
                     </div>
                 </div>
-
             </div>
 
-            <!-- Education Background Box -->
-            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80">
-                <h3 class="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
-                    <i data-lucide="graduation-cap" class="w-5 h-5 text-brand-500"></i>
-                    <span>學歷背景 ｜ 中國文化大學 (Chinese Culture University)</span>
-                </h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-start gap-4">
-                        <div
-                            class="w-10 h-10 rounded-xl bg-brand-500 text-white flex items-center justify-center font-bold text-lg shrink-0">
-                            BS
-                        </div>
-                        <div>
-                            <h4 class="text-base font-bold text-slate-900">資訊工程學系 學士</h4>
-                            <p class="text-xs text-brand-600 font-semibold mt-0.5">BS in Computer Science</p>
-                            <p class="text-xs text-slate-500 mt-2">2003/09 – 2008/06 畢業</p>
-                            <p class="text-xs text-slate-600 mt-2 leading-relaxed">奠定系統底層運作邏輯、資料結構、演算法與軟體工程開發標準訓練。</p>
-                        </div>
-                    </div>
-
-                    <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-start gap-4">
-                        <div
-                            class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold text-lg shrink-0">
-                            BA
-                        </div>
-                        <div>
-                            <h4 class="text-base font-bold text-slate-900">資訊傳播學系 學士（雙主修）</h4>
-                            <p class="text-xs text-amber-600 font-semibold mt-0.5">BA in Information Communication
-                                (Double Major)</p>
-                            <p class="text-xs text-slate-500 mt-2">2003/09 – 2008/06 畢業</p>
-                            <p class="text-xs text-slate-600 mt-2 leading-relaxed">
-                                結合數位媒體傳播、使用者介面設計（UI/UX）與行銷心理學，培養敏銳的數位產品感受力。</p>
-                        </div>
-                    </div>
-                </div>
+            <!-- Page 2 Footer -->
+            <div class="flex justify-between text-[9px] text-slate-400 border-t border-slate-100 pt-1 mt-4">
+                <span>黃巧希 Joanna Huang CV</span>
+                <span>2 / 2</span>
             </div>
-
-        </section>
-
-    </main>
+        </div>
+    </div>
 
     <!-- JAVASCRIPT FOR INTERACTIVITY & CHARTS -->
     <script>
@@ -1301,46 +1365,44 @@
         const experienceData = [
             {
                 id: "htc",
-                company: "HTC VIVE",
+                company: "HTC 宏達國際電子股份有限公司",
                 logo: "images/logo/htc.jpg",
                 type: "全職",
                 totalDuration: "8 年 6 個月",
-                dateRange: "2017年6月 – 2025年11月",
-                location: "新北市 • 新店 ｜ 消費性電子產品製造業 (500人以上)",
+                dateRange: "2017 – 2025",
+                location: "新北市 ｜ 消費性電子產品製造業",
                 roles: [
                     {
-                        title: "M365 & IT Operations Manager ／ Cloud Subscription & Data Governance",
-                        period: "2024年7月 – 2025年11月",
+                        title: "M365 & Subscription Management of IT Cloud",
+                        period: "2024–2025",
                         location: "",
                         bullets: [
-                            "主導全公司 SaaS 授權生命週期管理（Atlassian Jira / Confluence / Trello），建立標準化採購與審核流程，<strong class='text-slate-900'>管理 300+ 帳號、年度預算規模達新台幣 100 萬元</strong>。",
-                            "設計自動化派發與離職權限回收機制，落實最小權限原則，降低人工操作錯誤率。",
-                            "建立 <strong class='text-brand-600'>Power BI 授權使用率儀表板</strong>，定期產出數據報告供管理層決策，協助識別閒置授權並優化席次配置。",
-                            "對接全球多事業部（BU）團隊需求，主導廠商比價、合約審查與續約談判，成功為企業省下可觀之閒置軟體成本。",
-                            "運用 Vibe Coding（AI 輔助開發）開發客製化 Python 腳本，透過 API 介接 Trello Enterprise 數據，精準識別閒置帳號做為談判籌碼。"
+                            "主導全公司 SaaS 授權生命週期管理 ( M365 / Jira / Confluence / Trello），建立標準化續約流程，管理 300+ 帳號、年度預算規模達 NT$100 萬",
+                            "設計自動化派發與離職權限回收機制，落實最小權限原則，降低人工操作錯誤率",
+                            "建立 Power BI 授權使用率儀表板，供管理層決策依據，優化席次配置",
+                            "自主開發 Trello Enterprise Toolkit（Vibe Coding），解決權限降級資料流失痛點（詳見專案）"
                         ],
-                        skills: ["Atlassian Suite", "M365", "Power BI", "SaaS 授權治理", "Python API 串接"]
+                        skills: ["SaaS Subscription", "Power BI", "Atlassian Suite", "M365", "Vibe Coding"]
                     },
                     {
-                        title: "Web Content Manager ／ 全球官方網站數位平台內容管理",
-                        period: "2021年4月 – 2024年6月",
+                        title: "全球官網內容營運與在地化管理",
+                        period: "2021–2024",
                         location: "",
                         bullets: [
-                            "統籌 htc.com、vive.com、business.vive.com 等全球官方網站之內容上稿、改版與維運。",
-                            "建立標準化翻譯發布 SOP，<strong class='text-slate-900'>主導管理 6 大地區 × 10 語系</strong>跨國官網之同步更新上線。",
-                            "作為產品經理（PM）、設計師與工程師間的溝通橋樑，推動新品發佈頁面準時上線並持續優化 UX 與 SEO 表現。"
+                            "統籌 htc.com、vive.com 等全球官網之內容上稿、改版與維運",
+                            "建立標準化翻譯發布 SOP，管理 6 地區 × 10 語系同步上線"
                         ],
-                        skills: ["Web Content Management", "SEO 優化", "跨國多語系營運", "Good Organizational Skills"]
+                        skills: ["Web Content Management", "SOP 建立", "跨國多語系營運", "SEO"]
                     },
                     {
-                        title: "Specialist of Digital Marketing ／ 付費媒體投放與行銷數據分析",
-                        period: "2017年6月 – 2020年9月",
+                        title: "Paid Media 媒體投放與數據分析",
+                        period: "2017–2021",
                         location: "",
                         bullets: [
-                            "操作 HTC 與 VIVE 雙品牌全球數位廣告投放（Google Ads、Meta Ads、Twitter），依據 CTR / CVR / CPA 指標即時調整優化投放策略。",
-                            "與 IT 團隊緊密合作，<strong class='text-slate-900'>建立 Power BI 廣告投放成效儀表板</strong>，串接跨平台廣告 API 數據，產出成效分析報告，提供 BU 預算配置建議。"
+                            "Media Buyer：獨立操盤 HTC／VIVE 雙品牌全球廣告投放（Google／Meta／Twitter Ads）",
+                            "建立 Power BI 廣告投放儀表板，串接跨平台數據，提供 BU 預算配置建議"
                         ],
-                        skills: ["Paid Media Advertising", "Google Ads", "Meta Ads", "Power BI 廣告儀表板"]
+                        skills: ["Media Buyer", "Power BI", "Google Ads", "Meta Ads", "數據分析"]
                     }
                 ]
             },
@@ -1350,73 +1412,39 @@
                 logo: "images/logo/promise.gif",
                 type: "全職",
                 totalDuration: "3 年 8 個月",
-                dateRange: "2013年4月 – 2016年11月",
-                location: "新竹市 • 科學園區 ｜ 電腦系統整合服務業 (100~500人)",
+                dateRange: "2013 – 2016",
+                location: "科學園區 ｜ 電腦系統整合服務業",
                 roles: [
                     {
-                        title: "Webmaster ／ 官網營運、系統優化與跨部門專案管理",
-                        period: "2013年4月 – 2016年11月",
+                        title: "官網營運、系統優化與跨部門溝通",
+                        period: "2013–2016",
                         location: "",
                         bullets: [
-                            "官網規劃與測試：負責官方網站架構規劃、功能測試與 SEO 優化，確保網站高可用性與流暢使用者體驗（UI/UX）。",
-                            "跨部門需求整合（IT / PM）：作為行銷部門與 IT 開發、產品 PM 團隊間之溝通橋樑，精準對齊新品上市之網頁開發規格。",
-                            "分析監控系統建置：利用 Google Analytics 與 Search Console 定期追蹤流量與轉換行為，產出優化洞察。"
+                            "官網規劃、功能測試與 SEO 優化，使用者體驗（ UI/UX）。跨部門需求整合（ IT / PM）。",
+                            "COMPUTEX 2016 展覽統籌。亞太區展覽與行銷活動之規劃、宣傳物料籌備與現場執行。"
                         ],
-                        skills: ["Google Analytics", "Search Console", "UI/UX", "SEO", "MarCom"]
-                    },
-                    {
-                        title: "International Event Manager ／ 國際展覽專案管理",
-                        period: "2016年",
-                        location: "",
-                        bullets: [
-                            "<strong class='text-slate-900'>COMPUTEX 2016 展覽統籌</strong>：獨立負責 COMPUTEX 2016 參展全流程管理、攤位動線與視覺規劃，並追蹤外包廠商與協力團隊之工程進度與交付品質。",
-                            "APAC 區域展覽支援：支援亞太區（APAC）各大實體展覽與行銷活動之事前規劃、宣傳物料籌備與現場執行。"
-                        ],
-                        skills: ["Event Management", "COMPUTEX 展覽統籌", "外包廠商管理"]
+                        skills: ["UI/UX", "SEO 優化", "IT / PM 跨部門整合", "COMPUTEX 展覽統籌", "外包廠商管理"]
                     }
                 ]
             },
             {
-                id: "draytek",
-                company: "DrayTek 居易科技股份有限公司",
-                logo: "images/logo/draytek.gif",
-                type: "全職",
-                totalDuration: "1 年 9 個月",
-                dateRange: "2010年12月 – 2012年8月",
-                location: "新竹縣 • 湖口 ｜ 通訊機械器材相關業 (100~500人)",
-                roles: [
-                    {
-                        title: "Web Marketing Specialist ／ 網站行銷企劃與 CMS 導入",
-                        period: "2010年12月 – 2012年8月",
-                        location: "",
-                        bullets: [
-                            "主導官網改版提案，<strong class='text-slate-900'>推動 Joomla! CMS 系統導入</strong>，在不變動前端 UI/UX 前提下完成資料架構無縫轉移。",
-                            "跨部門協調：作為行銷與 IT 開發團隊溝通橋樑，對齊需求規格與開發時程，順利完成第一階段系統準時上線。",
-                            "公司官方網站日常維護與內容營運：企業 EDM 製作與全球訂戶發送，並定期維護 GUI Live Web Demo 頁面及 Flash Banner 設計製作。"
-                        ],
-                        skills: ["Joomla! CMS", "Web Marketing", "EDM 發送系統", "Live Demo 頁面維護"]
-                    }
-                ]
-            },
-            {
-                id: "Gfactor",
-                company: "G-Factor Technology 其達科技股份有限公司",
+                id: "early_career",
+                company: "早期職涯：官網建置、 PM 專案管理與行銷溝通",
                 logo: null,
-                type: "全職",
-                totalDuration: "2 年 3 個月",
-                dateRange: "2008年10月 – 2010年12月",
-                location: "新竹縣 • 竹北 ｜ 電腦軟體服務業 (1~30人)",
+                type: "經歷",
+                totalDuration: "4 年",
+                dateRange: "2008 – 2012",
+                location: "網頁規劃與前端開發",
                 roles: [
                     {
-                        title: "Web Designer & Project Lead ／ 美術設計工程師（網頁設計師）",
-                        period: "2008年10月 – 2010年12月",
+                        title: "專案經理、網頁設計與前端開發",
+                        period: "2008–2012",
                         location: "",
                         bullets: [
-                            "身兼 PM、UI/UX 設計與前端開發三重角色，負責 3–4 個客戶網站建置案，執行需求訪談、規格書撰寫與跨團隊（含外包）協調交付。",
-                            "將客戶業務需求轉化為標準化流程圖與規格文件，作為後端工程師開發基準。",
-                            "執行前端網頁語法開發（HTML、CSS、JavaScript），並製作各類視覺設計與互動網頁。"
+                            "官網規劃／測試／ SEO 優化、Joomla CMS 系統導入",
+                            "獨立負責 3–4 件客戶網站建置專案 PM／需求分析／UI UX／前端開發"
                         ],
-                        skills: ["UI/UX Design", "HTML/CSS/JavaScript", "需求訪談與規格書", "專案交付協調"]
+                        skills: ["Joomla CMS", "PM 專案管理", "需求分析", "UI UX", "前端開發"]
                     }
                 ]
             }
